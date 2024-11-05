@@ -3,14 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sign Up - XYZ Restaurant</title>
+    <link rel="stylesheet" href="signup.css">
 </head>
-
-<style>
-    
-</style>
-
 <body>
-    
+
+    <!-- Container for the sign-up form -->
+    <div class="container"> 
+
+        <h1>Create an Account</h1> 
+
+        <!-- Sign-up form with an ID for JavaScript access -->
+        <form id="signupForm"> 
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required> <!-- Input for user's full name -->
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required> <!-- Input for user's email -->
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required> <!-- Input for user's password -->
+
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required> <!-- Input for password confirmation -->
+
+            <!-- Submit button for the form -->
+            <button type="submit">Sign Up</button> 
+        </form>
+        
+        <!-- Link to the login page -->
+        <p>Already have an account? <a href="login.html">Log in here</a>.</p> 
+    </div>
+
+    <script src="signup.js"></script>
 </body>
 </html>
