@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
+    <script src="signup&login.js"></script>
 </head>
 
 <style>
@@ -46,6 +47,8 @@ body {
     background-color: #0a0a0a;
     width: 60%;
     padding-bottom: 90px;
+    border: 2px #0a0a0a solid;
+    border-radius: 5px;
 }
 
 #login {
@@ -91,9 +94,10 @@ label {
     background-color: rgba(244, 0, 0, 0.838);
     border: 2px rgba(244, 0, 0, 0.838);
     border-radius: 20px;
-    font-size: 20px;
+    font-size: 23px;
+    font-family: 'Playfair Display', Arial;
     margin-bottom: 30px;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .input-boxes button:hover {
@@ -131,7 +135,7 @@ label {
                     <input id="first" class="description-text" placeholder="Type Username" type="text">
                     <label for="#last">Password</label>
                     <input id="last" class="description-text" placeholder="Type Password" type="text">
-                    <button>Log In</button>
+                    <button onclick="login()">Log In</button>
                     <p class="description-text">Don't Have an Account? <a href="signup.html">Sign Up for [Company Name]</a></p>
                 </div>
             </div>
