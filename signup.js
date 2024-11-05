@@ -31,7 +31,7 @@ document.getElementById('signupForm').addEventListener('submit', function (e) {
     // Use the user's email as the key and convert the object to a JSON string for storage
     /*JavaScript Object Notation, is a lightweight data format that is easy for both humans and machines to read and write.
       JavaScript objects cannot be stored directly in localStorage because localStorage can only store data as strings.
-T     The JSON string is simply a representation of the object with keys and values in quotes, making it easier to store as text. */
+      The JSON string is simply a representation of the object with keys and values in quotes, making it easier to store as text. */
     localStorage.setItem(email, JSON.stringify(userData));
 
     // Notify the user that the sign-up was successful
