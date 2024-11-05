@@ -5,11 +5,136 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
 </head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: linear-gradient(180deg, rgb(35, 35, 35), rgb(15, 15, 15));
+    color: white;
+    font-family: 'Cormorant', Arial;
+    font-weight: 400;
+    height: 100vh;
+}
+
+.description-text {
+    font-family: 'Cormorant', Arial;
+    font-weight: 400;
+    font-size: 25px;
+}
+
+.headers {
+    font-family: 'Playfair Display', Arial;
+    font-weight: 600;
+    font-size: 40px;
+    text-align: center;
+}
+
+#company {
+    font-size: 50px;
+    padding-top: 40px;
+    padding-bottom: 35px;
+    font-weight: 800;
+}
+
+.body-content {
+    margin: 0 auto;
+    background-color: #0a0a0a;
+    width: 60%;
+    padding-bottom: 90px;
+}
+
+#login {
+    padding-top: 50px;
+    padding-bottom: 30px;
+    font-weight: 700;
+}
+
+.input-boxes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    margin: 0 auto;
+}
+
+label {
+    font-size: 20px;
+    padding-bottom: 7px;
+}
+
+.input-boxes input {
+    width: 90%;
+    margin-bottom: 10px;
+    border: 2px #353535 solid;
+    padding: 10px;
+    background: rgb(20, 20, 20);
+    outline: none;
+    color: white;
+    justify-content: center;
+}
+
+.input-boxes input:focus {
+    border: 2px white solid;
+    transition: 0.2s;
+}
+
+.input-boxes button {
+    margin-left: 12px;
+    padding: 15px 0px;
+    text-align: center;
+    width: 90%;
+    background-color: rgba(244, 0, 0, 0.838);
+    border: 2px rgba(244, 0, 0, 0.838);
+    border-radius: 20px;
+    font-size: 20px;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.input-boxes button:hover {
+    background-color: white;
+    transition: 0.3s;
+}
+
+#last {
+    margin-bottom: 30px;
+}
+
+.main-body p {
+    color: grey;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 800;
+}
+
+.description-text a {
+    padding-left: 30px;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+</style>
+
 <body>
     <div class="main-body">
-        <div class="main-content">
-            
-        </div>
+            <h1 id="company" class="headers">[Company Name]</h1>
+            <div class="body-content">
+                <h3 id="login" class="headers">Login</h3>
+                <div class="input-boxes">
+                    <label for="#first">Username or Email</label>
+                    <input id="first" class="description-text" placeholder="Type Username" type="text">
+                    <label for="#last">Password</label>
+                    <input id="last" class="description-text" placeholder="Type Password" type="text">
+                    <button>Log In</button>
+                    <p class="description-text">Don't Have an Account? <a href="signup.html">Sign Up for [Company Name]</a></p>
+                </div>
+            </div>
     </div>
 </body>
 </html>
