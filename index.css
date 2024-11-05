@@ -15,7 +15,6 @@ body {
     font-weight: 600;
 }
 
-
 nav {
     display: flex;
     background-color: rgb(20, 20, 20);
@@ -24,10 +23,6 @@ nav {
     position: fixed;
     width: 100%;
     z-index: 1000;
-}
-
-nav.left {
-
 }
 
 .nav-right {
