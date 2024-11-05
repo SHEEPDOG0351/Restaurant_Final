@@ -15,16 +15,11 @@ body {
     font-weight: 600;
 }
 
-
 nav {
     display: flex;
     background-color: rgb(20, 20, 20);
     justify-content: space-between;
     padding: 30px;
-}
-
-nav.left {
-    
 }
 
 .nav-right {
@@ -107,6 +102,7 @@ nav.left {
 .menu-section {
     padding: 50px 150px;
     color: white;
+    background: black;
 }
 
 .menu-section h2 {
