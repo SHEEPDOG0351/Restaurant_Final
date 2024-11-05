@@ -87,19 +87,33 @@ nav {
 
 .main-body {
     padding-left: 150px;
-    padding-top: 270px;
+    padding-top: 200px;
     color: white;
 }
 
 .main-body h1 {
     font-size: 70px;
+    background-color: rgb(20, 20, 20);
+    margin-right: 150px;
+    padding: 10px;
+    border: 3px solid white;
+    border-bottom: none;
 }
 
 .main-body p {
     font-size: 30px;
+    margin-right: 150px;
+    padding: 10px;
+
 }
 
-
+.paras
+{
+    background-color:  rgb(20, 20, 20);
+    border: 3px solid white;
+    margin-right: 150px;
+    border-top: none;
+}
 
 
 /*Start of the menu styles*/
