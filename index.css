@@ -20,6 +20,9 @@ nav {
     background-color: rgb(20, 20, 20);
     justify-content: space-between;
     padding: 30px;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
 }
 
 .nav-right {
@@ -62,6 +65,7 @@ nav {
     background-image: url('food_2_background.jpg'); 
     background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     z-index: -2;
 }
 
@@ -102,7 +106,7 @@ nav {
 .menu-section {
     padding: 50px 150px;
     color: white;
-    background: black;
+    background-color: black;
 }
 
 .menu-section h2 {
