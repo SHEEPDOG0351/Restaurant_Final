@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Restaurant</title>
         <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Imports font awesome icons -->
     </head>
     <body>
         <div class="main-page">
@@ -18,7 +19,7 @@
                         <li><a href="#main-body">Home</a></li>
                         <li><a href="#menu-section">Menu</a></li>
                         <li><a href="">Order</a></li>
-                        <li><a href="">Book A Seet</a></li>
+                        <li><a href="">Reservations</a></li>
                         <li><a href="">Rate Us</a></li>
                         <li><a href="login.html">Sign Up / Login</a></li>
                     </ul>
@@ -229,6 +230,26 @@
                         <button class="add-to-order">Add to Order</button>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="reviews-main">
+            <h1 class="headers-text" id="reviews-header">Leave Us a Review!</h1>
+            <div class="divider"></div>
+            <div class="reviews-body">
+                <div class="star-rating">
+                    <i class="far fa-star" data-value="5"></i>
+                    <i class="far fa-star" data-value="4"></i>
+                    <i class="far fa-star" data-value="3"></i>
+                    <i class="far fa-star" data-value="2"></i>
+                    <i class="far fa-star" data-value="1"></i>
+                </div>                
+            </div>
+
+            <div class="review-input-body">
+                <input id="full" placeholder="Type Full Name for Review" type="text">
+                <input placeholder="Give us a description!" type="text">
+                <button>Place Review</button>    
             </div>
         </div>
 
