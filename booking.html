@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Booking</title>
+    <link rel="stylesheet" href="booking.css"> <!-- Link to your existing CSS -->
+</head>
+<body>
+    
+    <nav>
+        <div class="nav-left">
+            <p><a href="">The Flavour Forge</a></p>
+        </div>
+
+        <div class="nav-right">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="booking.html">Book A Seet</a></li>
+                <li><a href="login.html">Sign Up / Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Welcome to The Flavour Forge</h1>
+        <p>Book your table now for an unforgettable dining experience.</p>
+    </header>
+
+    <div class="booking-page">
+        <!-- Restaurant Layout Image -->
+        <div class="restaurant-layout">
+            <img src="TableLayout.png" alt="Restaurant Layout" class="restaurant-image">
+        </div>
+
+        <!-- Party Size Input Section -->
+        <div class="party-size">
+            <h2>Select Your Party Size</h2>
+            <select id="party-size" onchange="filterTables()">
+                <option value="2">2 people</option>
+                <option value="3">3 people</option>
+                <option value="4">4 people</option>
+                <option value="5">5 people</option>
+            </select>
+        </div>
+
+        <!-- Tables Section -->
+        <div class="tables-section">
+            <h2>Available Tables</h2>
+
+            <div class="table-cards">
+                <!-- Table Card Example -->
+                <div class="table-card" data-seats="2">
+                    <h3>Table 1</h3>
+                    <p>Seats: 2</p>
+                    <p>Type: Table</p>
+                    <label for="time-1">Select Time:</label>
+                    <select id="time-1">
+                        <option value="1pm-2pm">1:00 PM - 2:00 PM</option>
+                        <option value="2pm-3pm">2:00 PM - 3:00 PM</option>
+                        <option value="3pm-4pm">3:00 PM - 4:00 PM</option>
+                    </select>
+                </div>
+
+                <div class="table-card" data-seats="2">
+                    <h3>Table 2</h3>
+                    <p>Seats: 2</p>
+                    <p>Type: Table</p>
+                    <label for="time-2">Select Time:</label>
+                    <select id="time-2">
+                        <option value="1pm-2pm">1:00 PM - 2:00 PM</option>
+                        <option value="2pm-3pm">2:00 PM - 3:00 PM</option>
+                        <option value="3pm-4pm">3:00 PM - 4:00 PM</option>
+                    </select>
+                </div>
+
+                <div class="table-card" data-seats="4">
+                    <h3>Table 3</h3>
+                    <p>Seats: 4</p>
+                    <p>Type: Table</p>
+                    <label for="time-3">Select Time:</label>
+                    <select id="time-3">
+                        <option value="1pm-2pm">1:00 PM - 2:00 PM</option>
+                        <option value="2pm-3pm">2:00 PM - 3:00 PM</option>
+                        <option value="3pm-4pm">3:00 PM - 4:00 PM</option>
+                    </select>
+                </div>
+
+                <div class="table-card" data-seats="2">
+                    <h3>Table 4</h3>
+                    <p>Seats: 2</p>
+                    <p>Type: Table</p>
+                    <label for="time-3">Select Time:</label>
+                    <select id="time-3">
+                        <option value="1pm-2pm">1:00 PM - 2:00 PM</option>
+                        <option value="2pm-3pm">2:00 PM - 3:00 PM</option>
+                        <option value="3pm-4pm">3:00 PM - 4:00 PM</option>
+                    </select>
+                </div>
+
+                <div class="table-card" data-seats="2">
+                    <h3>Table 5</h3>
+                    <p>Seats: 2</p>
+                    <p>Type: Table</p>
+                    <label for="time-3">Select Time:</label>
+                    <select id="time-3">
+                        <option value="1pm-2pm">1:00 PM - 2:00 PM</option>
+                        <option value="2pm-3pm">2:00 PM - 3:00 PM</option>
+                        <option value="3pm-4pm">3:00 PM - 4:00 PM</option>
+                    </select>
+                </div>
+
+                <div class="table-card" data-seats="4">
+                    <h3>Table 6</h3>
+                    <p>Seats: 4</p>
+                    <p>Type: Rounded Booth</p>
+                    <label for="time-3">Select Time:</label>
+                    <select id="time-3">
+                        <option value="1pm-2pm">1:00 PM - 2:00 PM</option>
+                        <option value="2pm-3pm">2:00 PM - 3:00 PM</option>
+                        <option value="3pm-4pm">3:00 PM - 4:00 PM</option>
+                    </select>
+                </div>
+
+                <div class="table-card" data-seats="4">
+                    <h3>Table 7</h3>
+                    <p>Seats: 4</p>
+                    <p>Type: Booth</p>
+                    <label for="time-3">Select Time:</label>
+                    <select id="time-3">
+                        <option value="1pm-2pm">1:00 PM - 2:00 PM</option>
+                        <option value="2pm-3pm">2:00 PM - 3:00 PM</option>
+                        <option value="3pm-4pm">3:00 PM - 4:00 PM</option>
+                    </select>
+                </div>
+
+                <div class="table-card" data-seats="4">
+                    <h3>Table 8</h3>
+                    <p>Seats: 4</p>
+                    <p>Type: Booth</p>
+                    <label for="time-3">Select Time:</label>
+                    <select id="time-3">
+                        <option value="1pm-2pm">1:00 PM - 2:00 PM</option>
+                        <option value="2pm-3pm">2:00 PM - 3:00 PM</option>
+                        <option value="3pm-4pm">3:00 PM - 4:00 PM</option>
+                    </select>
+                </div>
+
+                <div class="table-card" data-seats="4">
+                    <h3>Table 9</h3>
+                    <p>Seats: 4</p>
+                    <p>Type: Booth</p>
+                    <label for="time-3">Select Time:</label>
+                    <select id="time-3">
+                        <option value="1pm-2pm">1:00 PM - 2:00 PM</option>
+                        <option value="2pm-3pm">2:00 PM - 3:00 PM</option>
+                        <option value="3pm-4pm">3:00 PM - 4:00 PM</option>
+                    </select>
+                </div>
+
+                <div class="table-card" data-seats="5">
+                    <h3>Table 10</h3>
+                    <p>Seats: 5</p>
+                    <p>Type: Booth</p>
+                    <label for="time-3">Select Time:</label>
+                    <select id="time-3">
+                        <option value="1pm-2pm">1:00 PM - 2:00 PM</option>
+                        <option value="2pm-3pm">2:00 PM - 3:00 PM</option>
+                        <option value="3pm-4pm">3:00 PM - 4:00 PM</option>
+                    </select>
+                </div>
+
+                <div class="table-card" data-seats="4">
+                    <h3>Table 11</h3>
+                    <p>Seats: 4</p>
+                    <p>Type: Booth</p>
+                    <label for="time-3">Select Time:</label>
+                    <select id="time-3">
+                        <option value="1pm-2pm">1:00 PM - 2:00 PM</option>
+                        <option value="2pm-3pm">2:00 PM - 3:00 PM</option>
+                        <option value="3pm-4pm">3:00 PM - 4:00 PM</option>
+                    </select>
+                </div>
+
+                <div class="table-card" data-seats="4">
+                    <h3>Table 12</h3>
+                    <p>Seats: 4</p>
+                    <p>Type: Booth</p>
+                    <label for="time-3">Select Time:</label>
+                    <select id="time-3">
+                        <option value="1pm-2pm">1:00 PM - 2:00 PM</option>
+                        <option value="2pm-3pm">2:00 PM - 3:00 PM</option>
+                        <option value="3pm-4pm">3:00 PM - 4:00 PM</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="booking.js"></script>
+</body>
+</html>
