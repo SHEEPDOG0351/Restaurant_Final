@@ -1,45 +1,118 @@
 // Wait for the DOM to fully load before executing the script
 document.addEventListener("DOMContentLoaded", function() {
-    // Select all 'Add to Order' buttons for individual items and add event listeners to them
+    // Select the purchase button and add an event listener to handle purchase click
+    const purchaseButton = document.querySelector(".btn-purchase");
+    purchaseButton.addEventListener("click", handlePurchaseClicked);
+    
+    // Select all 'Add to Order' buttons for individual items and add event listeners
     const addToOrderButtons = document.querySelectorAll(".add-to-order");
     addToOrderButtons.forEach(button => {
-        button.addEventListener("click", addToCartClicked);  // Add event listener to add items to the cart
+        button.addEventListener("click", addToCartClicked);  // Trigger adding item to the cart
     });
 
-    // Select all 'Add Meal to Order' buttons for meal sections and add event listeners to them
+    // Select all 'Add Meal to Order' buttons for meal sections and add event listeners
     const addMealToOrderButtons = document.querySelectorAll(".meal-header .add-to-order");
     addMealToOrderButtons.forEach(button => {
-        button.addEventListener("click", addMealToCartClicked);  // Add event listener for adding meals to cart
+        button.addEventListener("click", addMealToCartClicked);  // Trigger adding meal to the cart
     });
 });
 
-// Function to add individual item to the cart when the 'Add to Order' button is clicked
-function addToCartClicked(event) {
-    const button = event.target;  // Get the clicked button
-    const menuItem = button.closest(".menu-item, .drink-item, .side-item");  // Find the closest menu item element
+// Function to handle the purchase button click
+function handlePurchaseClicked() {
+    // Capture the cart items container and its rows
+    const cartItemsContainer = document.querySelector(".cart-items");
+    const cartRows = cartItemsContainer.querySelectorAll(".cart-row");
 
-    // Extract relevant information from the item
-    const itemImageSrc = menuItem.querySelector("img").src;
-    const itemName = menuItem.querySelector("h3").innerText;
-    const priceText = menuItem.querySelector("#price").innerText;
-    const itemPrice = parseFloat(priceText.replace("Price: $", ""));  // Parse the price as a number
+    let orderDetails = ''; // Store the details of the items in the order
+    let totalAmount = 0;  // Initialize the total amount to 0
+
+    // Loop through each cart row to extract item details (name, price, and quantity)
+    cartRows.forEach(row => {
+        const itemName = row.querySelector(".cart-item-title").innerText;
+        const itemPrice = parseFloat(row.querySelector(".cart-price").innerText.replace('$', '')); // Price of the item
+        const quantity = parseInt(row.querySelector(".cart-quantity-input").value); // Quantity selected by the user
+
+        const itemTotal = itemPrice * quantity; // Calculate total for this item
+        totalAmount += itemTotal; // Add item total to the overall total amount
+
+        // Add item details to the orderDetails string
+        orderDetails += `<p>${itemName} - $${itemPrice.toFixed(2)} x ${quantity} = $${itemTotal.toFixed(2)}</p>`;
+    });
+
+    // Generate the receipt HTML content to display the order details
+    const receiptPage = `
+        <html>
+            <head>
+                <title>Receipt</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        margin: 40px;
+                    }
+                    h1 {
+                        color: #333;
+                    }
+                    .receipt-container {
+                        border: 1px solid #ccc;
+                        padding: 20px;
+                        width: 60%;
+                        margin: 0 auto;
+                    }
+                    .total {
+                        font-weight: bold;
+                        font-size: 1.2em;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="receipt-container">
+                    <h1>Your Receipt</h1>
+                    <div class="order-details">
+                        ${orderDetails}
+                    </div>
+                    <div class="total">
+                        Total: $${totalAmount.toFixed(2)}
+                    </div>
+                </div>
+            </body>
+        </html>
+    `;
+
+    // Open a new window or tab to display the receipt page
+    const newWindow = window.open();
+    newWindow.document.write(receiptPage);
+    newWindow.document.close();
+
+    // Clear the cart after the purchase and update the cart total
+    cartItemsContainer.innerHTML = ''; // Empty the cart items
+    updateCartTotal(); // Recalculate the total after clearing the cart
+}
+
+// Function to handle adding an individual item to the cart
+function addToCartClicked(event) {
+    const button = event.target; // Get the button that was clicked
+    const menuItem = button.closest(".menu-item, .drink-item, .side-item"); // Find the closest item (menu, drink, or side)
+
+    const itemImageSrc = menuItem.querySelector("img").src; // Get the image source of the item
+    const itemName = menuItem.querySelector("h3").innerText; // Get the name of the item
+    const priceText = menuItem.querySelector("#price").innerText; // Get the price text of the item
+    const itemPrice = parseFloat(priceText.replace("Price: $", "")); // Convert the price to a number
 
     // Add the item to the cart and update the cart total
     addItemToCart(itemImageSrc, itemName, itemPrice);
     updateCartTotal();
 }
 
-// Function to add a meal to the cart when the 'Add Meal to Order' button is clicked
+// Function to handle adding a meal (with multiple items) to the cart
 function addMealToCartClicked(event) {
-    const button = event.target;  // Get the clicked button
-    const mealSection = button.closest(".meal-header");  // Find the closest meal section element
+    const button = event.target; // Get the button that was clicked
+    const mealSection = button.closest(".meal-header"); // Find the closest meal section
 
-    // Extract relevant information from the meal section
-    const mealName = mealSection.querySelector("h3").innerText;
-    const priceText = mealSection.querySelector("#price").innerText;
-    const mealPrice = parseFloat(priceText.replace("Price for all items: $", ""));  // Parse the price as a number
+    const mealName = mealSection.querySelector("h3").innerText; // Get the name of the meal
+    const priceText = mealSection.querySelector("#price").innerText; // Get the price text for the meal
+    const mealPrice = parseFloat(priceText.replace("Price for all items: $", "")); // Extract the price as a number
 
-    // Placeholder image for the meal (you can replace this with a specific image URL)
+    // Placeholder image for the meal (replace with actual image if needed)
     const placeholderImage = "https://via.placeholder.com/150";
 
     // Add the meal to the cart and update the cart total
@@ -47,61 +120,59 @@ function addMealToCartClicked(event) {
     updateCartTotal();
 }
 
-// Function to create and add an individual item to the cart
+// Function to add an individual item to the cart
 function addItemToCart(imageSrc, name, price) {
-    const cartItemsContainer = document.querySelector(".cart-items");  // Find the cart container
-    const cartItemNames = cartItemsContainer.querySelectorAll(".cart-item-title");  // Get all item titles in the cart
+    const cartItemsContainer = document.querySelector(".cart-items"); // Get the cart container
+    const cartItemNames = cartItemsContainer.querySelectorAll(".cart-item-title"); // Get all the item names in the cart
 
-    // Check if the item is already in the cart
+    // Check if the item is already in the cart, if so, don't add it again
     for (let i = 0; i < cartItemNames.length; i++) {
         if (cartItemNames[i].innerText === name) {
-            alert("This item is already added to the cart");  // Alert if the item is already in the cart
-            return;
+            alert("This item is already added to the cart");
+            return; // Exit the function if item already in cart
         }
     }
 
-    // Create a new cart row for the item
+    // Create a new row for the item in the cart
     const cartRow = document.createElement("div");
-    cartRow.classList.add("cart-row");  // Add class to the cart row
+    cartRow.classList.add("cart-row"); // Add the class for cart row styling
 
-    // Add the item details (image, name, price, quantity input, and remove button) to the cart row
     const cartRowContents = `
         <div class="cart-item cart-column">
-            <img class="cart-item-image" src="${imageSrc}" width="100" height="100">
-            <span class="cart-item-title">${name}</span>
+            <img class="cart-item-image" src="${imageSrc}" width="100" height="100"> <!-- Item image -->
+            <span class="cart-item-title">${name}</span> <!-- Item name -->
         </div>
-        <span class="cart-price cart-column">$${price.toFixed(2)}</span>
+        <span class="cart-price cart-column">$${price.toFixed(2)}</span> <!-- Item price -->
         <div class="cart-quantity cart-column">
-            <input class="cart-quantity-input" type="number" value="1">
-            <button class="btn btn-danger" type="button">REMOVE</button>
+            <input class="cart-quantity-input" type="number" value="1"> <!-- Quantity input -->
+            <button class="btn btn-danger" type="button">REMOVE</button> <!-- Remove button -->
         </div>
     `;
     cartRow.innerHTML = cartRowContents;
-    cartItemsContainer.append(cartRow);  // Append the cart row to the cart container
+    cartItemsContainer.append(cartRow); // Append the new row to the cart
 
-    // Add event listeners for quantity changes and item removal
+    // Add event listeners to the quantity input and remove button
     cartRow.querySelector(".cart-quantity-input").addEventListener("change", quantityChanged);
     cartRow.querySelector(".btn-danger").addEventListener("click", removeCartItem);
 }
 
-// Function to create and add a meal to the cart
+// Function to add a meal to the cart
 function addMealToCart(imageSrc, name, price) {
-    const cartItemsContainer = document.querySelector(".cart-items");  // Find the cart container
-    const cartItemNames = cartItemsContainer.querySelectorAll(".cart-item-title");  // Get all item titles in the cart
+    const cartItemsContainer = document.querySelector(".cart-items");
+    const cartItemNames = cartItemsContainer.querySelectorAll(".cart-item-title");
 
     // Check if the meal is already in the cart
     for (let i = 0; i < cartItemNames.length; i++) {
         if (cartItemNames[i].innerText === name) {
-            alert("This meal is already added to the cart");  // Alert if the meal is already in the cart
+            alert("This meal is already added to the cart");
             return;
         }
     }
 
-    // Create a new cart row for the meal
+    // Add the meal to the cart as a new row
     const cartRow = document.createElement("div");
-    cartRow.classList.add("cart-row");  // Add class to the cart row
+    cartRow.classList.add("cart-row");
 
-    // Add the meal details (image, name, price, quantity input, and remove button) to the cart row
     const cartRowContents = `
         <div class="cart-item cart-column">
             <img class="cart-item-image" src="${imageSrc}" width="100" height="100">
@@ -114,46 +185,46 @@ function addMealToCart(imageSrc, name, price) {
         </div>
     `;
     cartRow.innerHTML = cartRowContents;
-    cartItemsContainer.append(cartRow);  // Append the cart row to the cart container
+    cartItemsContainer.append(cartRow);
 
-    // Add event listeners for quantity changes and item removal
+    // Add event listeners for the quantity input and remove button
     cartRow.querySelector(".cart-quantity-input").addEventListener("change", quantityChanged);
     cartRow.querySelector(".btn-danger").addEventListener("click", removeCartItem);
 }
 
-// Function to update the cart total price based on the cart items
+// Function to update the cart total price
 function updateCartTotal() {
-    const cartItemContainer = document.querySelector(".cart-items");  // Find the cart items container
-    const cartRows = cartItemContainer.querySelectorAll(".cart-row");  // Get all cart rows
-    let total = 0;  // Initialize total to 0
+    const cartItemContainer = document.querySelector(".cart-items"); // Get the cart container
+    const cartRows = cartItemContainer.querySelectorAll(".cart-row"); // Get all cart rows
+    let total = 0; // Initialize total price to 0
 
-    // Calculate the total by summing up the price * quantity for each item in the cart
+    // Loop through each cart row to calculate the total price
     cartRows.forEach(row => {
         const priceElement = row.querySelector(".cart-price");
         const quantityElement = row.querySelector(".cart-quantity-input");
 
-        const price = parseFloat(priceElement.innerText.replace('$', ''));  // Get the price for the item
-        const quantity = quantityElement.value;  // Get the quantity for the item
+        const price = parseFloat(priceElement.innerText.replace('$', '')); // Get the item price
+        const quantity = quantityElement.value; // Get the item quantity
 
-        total += price * quantity;  // Add the price * quantity to the total
+        total += price * quantity; // Add the price times quantity to the total
     });
 
-    // Display the total price in the cart
+    // Update the cart total price on the page
     document.querySelector(".cart-total-price").innerText = `$${total.toFixed(2)}`;
 }
 
-// Function to handle quantity change (ensures quantity is always at least 1)
+// Function to handle quantity change
 function quantityChanged(event) {
-    const input = event.target;  // Get the changed input
+    const input = event.target;
     if (input.value <= 0) {
-        input.value = 1;  // If quantity is 0 or less, set it to 1
+        input.value = 1; // Prevent the quantity from being 0 or negative
     }
-    updateCartTotal();  // Update the cart total after quantity change
+    updateCartTotal(); // Recalculate the cart total after the quantity change
 }
 
-// Function to remove an item from the cart when the 'REMOVE' button is clicked
+// Function to remove an item from the cart
 function removeCartItem(event) {
-    const buttonClicked = event.target;  // Get the clicked button
-    buttonClicked.closest(".cart-row").remove();  // Remove the entire cart row
-    updateCartTotal();  // Update the cart total after item removal
+    const buttonClicked = event.target;
+    buttonClicked.closest(".cart-row").remove(); // Remove the item row from the cart
+    updateCartTotal(); // Recalculate the cart total after removal
 }
