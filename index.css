@@ -6,6 +6,7 @@
 
 body {
     color: black;
+    background-color: rgb(43, 43, 43);
     font-family: 'Cormorant', 'Playfair Display', Arial;
     font-weight: 400;
 }
@@ -396,7 +397,7 @@ nav {
 .section-header {
     font-family: "Metal Mania";
     font-weight: normal;
-    color: #333;
+    color: white;
     text-align: center;
     font-size: 2.5em;
 }
@@ -423,13 +424,13 @@ nav {
 .cart-header {
     font-weight: bold;
     font-size: 1.25em;
-    color: #333;
+    color: white;
 }
 
 .cart-price {
     width: 20%;
     font-size: 1.2em;
-    color: #333;
+    color: white;
 }
 
 .cart-quantity {
@@ -446,12 +447,12 @@ nav {
 .cart-total-title {
     font-weight: bold;
     font-size: 1.5em;
-    color: black;
+    color: white;
     margin-right: 20px;
 }
 
 .cart-total-price {
-    color: #333;
+    color: white;
     font-size: 1.1em;
 }
 
@@ -484,8 +485,8 @@ nav {
     width: 50px;
     border-radius: 5px;
     border: 1px solid #56CCF2;
-    background-color: #eee;
-    color: #333;
+    background-color: rgb(43, 43, 43);
+    color: white;
     padding: 0;
     text-align: center;
     font-size: 1.2em;
