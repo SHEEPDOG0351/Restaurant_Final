@@ -380,12 +380,45 @@ nav {
     padding-bottom: 10px;
 }
 
+.review-description-container {
+    text-align: center;
+    width: 85%;
+    margin: 0 auto;
+    max-width: 100%; /* Ensures it doesn't exceed parent container */
+}
+
 #review-description {
     text-align: center;
     font-size: 35px;
     padding: 0 20px 40px 20px;
     font-weight: 200;
     font-family: 'Cormorant', Arial;
+    overflow-wrap: break-word;
+}
+
+.review-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.delete-button {
+    width: 20%;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 15px 5px;
+    font-size: 25px;
+    font-family: 'Playfair Display', Arial;
+    font-weight: 700;
+    background-color: rgba(244, 0, 0, 0.838);
+    border: 1px rgba(244, 0, 0, 0.838) solid;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.delete-button:hover {
+    background-color: white;
+    transition: 0.3s;
+    border: 1px white solid;
 }
 
 /*Start of the Ordering section*/
