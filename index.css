@@ -336,12 +336,14 @@ nav {
     width: 20%;
     margin: 0 auto;
     margin-top: 20px;
+    margin-bottom: 20px;
     padding: 20px 10px;
     font-size: 25px;
     font-family: 'Playfair Display', Arial;
     font-weight: 700;
-    background-color: rgba(244, 0, 0, 0.838);
-    border: 1px rgba(244, 0, 0, 0.838) solid;
+    background-color: #ff4444;
+    color: white;
+    border: 1px #ff4444 solid;
     border-radius: 5px;
 }
 
@@ -400,6 +402,7 @@ nav {
     color: white;
     text-align: center;
     font-size: 2.5em;
+    margin: 20px;
 }
 
 /* Flexbox layout for rows in the cart */
@@ -465,7 +468,7 @@ nav {
 /* Primary button styling (for the purchase button) */
 .btn-primary {
     color: white;
-    background-color: #56CCF2;
+    background-color: #ff4444;
     border: none;
     border-radius: .3em;
     font-weight: bold;
@@ -484,7 +487,7 @@ nav {
     height: 34px;
     width: 50px;
     border-radius: 5px;
-    border: 1px solid #56CCF2;
+    border: 1px solid #ff4444;
     background-color: rgb(43, 43, 43);
     color: white;
     padding: 0;
