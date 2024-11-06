@@ -247,6 +247,143 @@ nav {
     background-color: #ff2222;
 }
 
+.reviews-main {
+    background: linear-gradient(180deg, rgb(43, 43, 43), rgb(13, 13, 13));
+}
+
+.reviews-main h1 {
+    text-align: center;
+    color: white;
+}
+
+.divider {
+    height: 1px;
+    background-color: #aaaaaa;
+    width: 75%;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+
+.reviews-body {
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+    margin: 0 auto;
+    width: 85%;
+}
+
+#reviews-header {
+    padding: 20px;
+    font-size: 60px;
+}
+
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+/* Unfilled star styling */
+.star-rating .fa-star {
+    font-size: 50px;
+    color: white; /* Default unfilled color */
+    cursor: pointer;
+}
+
+/* Hover effect: turn current star and previous stars gold */
+.star-rating .fa-star:hover,
+.star-rating .fa-star:hover ~ .fa-star {
+    color: gold;
+
+}
+
+.star-rating .fa-star.filled {
+    color: gold; /* Fills star color when clicked */
+}
+
+.star-rating input {
+    padding: 0 0 100px 0;
+    width: 50%;
+}
+
+.review-input-body {
+    width: 75%;
+    padding-top: 20px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.review-input-body input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    background: white;
+    border: 1px #121212 solid;
+    padding: 10px 0 100px 10px;
+    border-radius: 5px;
+    font-family: 'Cormorant', Arial;
+    font-size: 25px;
+}
+
+#full {
+    padding: 10px 0 20px 10px;
+    margin-bottom: 15px;
+}
+
+.review-input-body button {
+    width: 20%;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 20px 10px;
+    font-size: 25px;
+    font-family: 'Playfair Display', Arial;
+    font-weight: 700;
+    background-color: rgba(244, 0, 0, 0.838);
+    border: 1px rgba(244, 0, 0, 0.838) solid;
+    border-radius: 5px;
+}
+
+.review-input-body button:hover {
+    background-color: white;
+    transition: 0.3s;
+    border: 1px white solid;
+}
+
+.review-entry {
+    width: 75%;
+    color: white;
+    margin: 0 auto;
+    padding-top: 20px;
+    background-color: black;
+    margin-top: 20px;
+}
+
+#review-divider {
+    margin-bottom: 10px !important;
+}
+
+.review-entry p:first-child {
+    font-weight: 700;
+    font-size: 50px;
+    color: white;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#rating {
+    text-align: center;
+    font-size: 60px;
+    padding-bottom: 10px;
+}
+
+#review-description {
+    text-align: center;
+    font-size: 35px;
+    padding: 0 20px 40px 20px;
+    font-weight: 200;
+    font-family: 'Cormorant', Arial;
+}
 
 /*Start of the Ordering section*/
 /* Container to limit the width of the content and center it */
