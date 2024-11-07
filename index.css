@@ -6,6 +6,7 @@
 
 body {
     color: black;
+    background-color: rgb(43, 43, 43);
     font-family: 'Cormorant', 'Playfair Display', Arial;
     font-weight: 400;
 }
@@ -336,12 +337,14 @@ nav {
     width: 20%;
     margin: 0 auto;
     margin-top: 20px;
+    margin-bottom: 20px;
     padding: 20px 10px;
     font-size: 25px;
     font-family: 'Playfair Display', Arial;
     font-weight: 700;
-    background-color: rgba(244, 0, 0, 0.838);
-    border: 1px rgba(244, 0, 0, 0.838) solid;
+    background-color: #ff4444;
+    color: white;
+    border: 1px #ff4444 solid;
     border-radius: 5px;
 }
 
@@ -431,9 +434,10 @@ nav {
 .section-header {
     font-family: "Metal Mania";
     font-weight: normal;
-    color: #333;
+    color: white;
     text-align: center;
     font-size: 2.5em;
+    margin: 20px;
 }
 
 /* Flexbox layout for rows in the cart */
@@ -458,13 +462,13 @@ nav {
 .cart-header {
     font-weight: bold;
     font-size: 1.25em;
-    color: #333;
+    color: white;
 }
 
 .cart-price {
     width: 20%;
     font-size: 1.2em;
-    color: #333;
+    color: white;
 }
 
 .cart-quantity {
@@ -481,12 +485,12 @@ nav {
 .cart-total-title {
     font-weight: bold;
     font-size: 1.5em;
-    color: black;
+    color: white;
     margin-right: 20px;
 }
 
 .cart-total-price {
-    color: #333;
+    color: white;
     font-size: 1.1em;
 }
 
@@ -499,7 +503,7 @@ nav {
 /* Primary button styling (for the purchase button) */
 .btn-primary {
     color: white;
-    background-color: #56CCF2;
+    background-color: #ff4444;
     border: none;
     border-radius: .3em;
     font-weight: bold;
@@ -518,9 +522,9 @@ nav {
     height: 34px;
     width: 50px;
     border-radius: 5px;
-    border: 1px solid #56CCF2;
-    background-color: #eee;
-    color: #333;
+    border: 1px solid #ff4444;
+    background-color: rgb(43, 43, 43);
+    color: white;
     padding: 0;
     text-align: center;
     font-size: 1.2em;
