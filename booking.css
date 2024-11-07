@@ -187,6 +187,33 @@ header p {
     display: block;
 }
 
+/* Book Table Button */
+#book-tables {
+    background-color: #f44400;  
+    color: white;
+    font-size: 18px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;  /* Make it full width in its container */
+    margin-top: 20px;  /* Space above the button */
+}
+
+/* Button Hover Effect */
+#book-tables:hover {
+    background-color: #d63a00;  /* Darker shade for hover effect */
+    transform: translateY(-3px);  /* Slight lift effect on hover */
+}
+
+/* Button Focus Effect */
+#book-tables:focus {
+    outline: none;
+    box-shadow: 0 0 5px 2px rgba(244, 68, 0, 0.5);  /* Light orange glow on focus */
+}
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .table-card {
