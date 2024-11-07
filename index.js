@@ -121,6 +121,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Function to handle the purchase button click
 function handlePurchaseClicked() {
+    // Check if the user is logged in using localStorage
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+    if (!isLoggedIn) {
+        alert("Please sign in before trying to purchase items.");
+        return; // Prevent the transaction from continuing
+    }
+    
     // Capture the cart items container and its rows
     const cartItemsContainer = document.querySelector(".cart-items");
     const cartRows = cartItemsContainer.querySelectorAll(".cart-row");
