@@ -20,13 +20,28 @@ nav {
     display: flex;
     background-color: rgb(20, 20, 20);
     justify-content: space-between;
-    padding: 30px;
+    padding: 15px 30px;
     position: fixed;
     width: 100%;
     z-index: 1000;
 }
 
-/* Styling for the Logo in the Navbar */
+nav.scrolled {
+    background-color: white;
+    color: black;
+    transition: 0.3s ease-in;
+}
+
+nav.scrolled a {
+    color: black !important;
+    transition: 0.3s ease-in;
+}
+
+nav.scrolled a:hover {
+    color: rgba(244, 0, 0, 0.838) !important;
+    transition: 0.3s;
+}
+
 .nav-left img {
     height: 40px;
     width: 50px;
@@ -35,6 +50,7 @@ nav {
 }
 
 .nav-right {
+    display: flex;
     float: right;
     padding-right: 150px;
 }
@@ -43,6 +59,7 @@ nav {
     list-style-type: none;
     display: flex;
     gap: 40px;
+    align-items: center;
 }
 
 .nav-right li{
@@ -412,14 +429,12 @@ nav {
     flex-direction: row-reverse;
 }
 
-/* Unfilled star styling */
 .star-rating .fa-star {
     font-size: 50px;
-    color: white; /* Default unfilled color */
+    color: white;
     cursor: pointer;
 }
 
-/* Hover effect: turn current star and previous stars gold */
 .star-rating .fa-star:hover,
 .star-rating .fa-star:hover ~ .fa-star {
     color: gold;
@@ -427,7 +442,7 @@ nav {
 }
 
 .star-rating .fa-star.filled {
-    color: gold; /* Fills star color when clicked */
+    color: gold;
 }
 
 .star-rating input {
@@ -514,7 +529,7 @@ nav {
     text-align: center;
     width: 85%;
     margin: 0 auto;
-    max-width: 100%; /* Ensures it doesn't exceed parent container */
+    max-width: 100%;
 }
 
 #review-description {
@@ -551,7 +566,113 @@ nav {
     border: 1px white solid;
 }
 
-/*Styling for the footer*/
+/*Start of the Ordering section*/
+/* Container to limit the width of the content and center it */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5em;
+}
+
+.section-header {
+    font-family: "Metal Mania";
+    font-weight: normal;
+    color: white;
+    text-align: center;
+    font-size: 2.5em;
+    margin: 20px;
+}
+
+.cart-row {
+    display: flex;
+}
+
+.cart-item {
+    width: 45%;
+}
+
+/* Flexbox layout for each cart column (e.g., item name, price, etc.) */
+.cart-column {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid black;
+    margin-right: 1.5em;
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+
+.cart-header {
+    font-weight: bold;
+    font-size: 1.25em;
+    color: white;
+}
+
+.cart-price {
+    width: 20%;
+    font-size: 1.2em;
+    color: white;
+}
+
+.cart-quantity {
+    width: 35%;
+}
+
+/* Container for the cart total section */
+.cart-total {
+    text-align: end;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.cart-total-title {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: white;
+    margin-right: 20px;
+}
+
+.cart-total-price {
+    color: white;
+    font-size: 1.1em;
+}
+
+.btn-purchase {
+    display: block;
+    margin: 40px auto 80px auto;
+    font-size: 1.75em;
+}
+
+/* Primary button styling (for the purchase button) */
+.btn-primary {
+    color: white;
+    background-color: #ff4444;
+    border: none;
+    border-radius: .3em;
+    font-weight: bold;
+}
+
+/* General button styling */
+.btn {
+    text-align: center;
+    vertical-align: middle;
+    padding: .67em .67em;
+    cursor: pointer;
+}
+
+/* Styling for the cart quantity input box */
+.cart-quantity-input {
+    height: 34px;
+    width: 50px;
+    border-radius: 5px;
+    border: 1px solid #ff4444;
+    background-color: rgb(43, 43, 43);
+    color: white;
+    padding: 0;
+    text-align: center;
+    font-size: 1.2em;
+    margin-right: 25px;
+}
+
 footer {
     background: black;
 }

@@ -2,6 +2,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // Party size dropdown and table cards
     const partySizeSelect = document.querySelector('.party-size select');
     const tableCards = document.querySelectorAll('.table-card');
+<<<<<<< HEAD
+
+    // Available times for each table
+    const availableTimes = {
+        'table-1': ['1pm-2pm', '2pm-3pm', '3pm-4pm'],
+        'table-2': ['1pm-2pm', '2pm-3pm', '3pm-4pm'],
+        'table-3': ['1pm-2pm', '2pm-3pm'],
+        'table-4': ['1pm-2pm', '2pm-3pm', '3pm-4pm'],
+        'table-5': ['1pm-2pm', '2pm-3pm', '3pm-4pm'],
+        'table-6': ['1pm-2pm', '2pm-3pm'],
+        'table-7': ['1pm-2pm', '2pm-3pm', '3pm-4pm'],
+        'table-8': ['1pm-2pm', '2pm-3pm', '3pm-4pm'],
+=======
     const bookTablesButton = document.getElementById('book-tables');
 
     // Simulate the login status (set to false by default, change this value as per actual login state)
@@ -21,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'table-10': ['', '1pm-2pm', '2pm-3pm', '3pm-4pm'],
         'table-11': ['', '1pm-2pm', '2pm-3pm'],
         'table-12': ['', '1pm-2pm', '2pm-3pm', '3pm-4pm'],
+>>>>>>> 43c1a044873815e5cdfffc9f55abed08dc0747a8
     };
 
     // Update table visibility based on party size
@@ -55,6 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initial trigger to show tables for the default party size
     partySizeSelect.dispatchEvent(new Event('change'));
+<<<<<<< HEAD
+=======
 
     // Handle booking action
     bookTablesButton.addEventListener('click', function() {
@@ -73,4 +89,5 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Your table(s) have been booked!');
         }
     });
+>>>>>>> 43c1a044873815e5cdfffc9f55abed08dc0747a8
 });

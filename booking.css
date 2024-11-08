@@ -187,6 +187,8 @@ header p {
     display: block;
 }
 
+<<<<<<< HEAD
+=======
 /* Book Table Button */
 #book-tables {
     background-color: #f44400;  
@@ -298,6 +300,7 @@ footer {
 }
 
 
+>>>>>>> 43c1a044873815e5cdfffc9f55abed08dc0747a8
 /* Responsive Design */
 @media (max-width: 768px) {
     .table-card {

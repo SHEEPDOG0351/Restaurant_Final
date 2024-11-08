@@ -32,7 +32,7 @@ const menu = [
     menu.forEach(meal => {
       const mealElement = document.createElement('div');
       mealElement.classList.add('meal');
-      
+  
       // Add meal title and total price
       let mealHTML = `
         <h3 class="meal-title">${meal.meal} - $${meal.totalPrice.toFixed(2)}</h3>
@@ -55,7 +55,7 @@ const menu = [
         </div>
         <button class="btn btn-primary add-to-order" onclick="addToOrder('${meal.meal}', ${meal.totalPrice})">Add to Order</button>
       `;
-      
+  
       mealElement.innerHTML = mealHTML;
       menuContainer.appendChild(mealElement);
     });
@@ -66,7 +66,7 @@ const menu = [
   
   function addToOrder(mealName, totalPrice) {
     const item = { mealName, totalPrice, quantity: 1 };
-    
+  
     // Check if meal already exists in the cart
     const existingItemIndex = cart.findIndex(cartItem => cartItem.mealName === mealName);
     if (existingItemIndex > -1) {
@@ -107,16 +107,27 @@ const menu = [
   }
   
   // Function to handle the purchase button click
+  function handlePurchaseClicked() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  
+    if (!isLoggedIn) {
+      alert("Please sign in before trying to purchase items.");
+      return; // Prevent the transaction from continuing
+    }
+  
+    purchaseClicked();
+  }
+  
+  // Function to handle purchases
   function purchaseClicked() {
     if (cart.length === 0) {
       alert('Your cart is empty. Please add some items to your order.');
       return;
     }
   
-    // For simplicity, we're just displaying an alert with the cart content
     const orderDetails = cart.map(item => `${item.quantity} x ${item.mealName} - $${(item.totalPrice * item.quantity).toFixed(2)}`).join('\n');
     const totalAmount = cart.reduce((total, item) => total + item.totalPrice * item.quantity, 0).toFixed(2);
-    
+  
     alert(`Your Order:\n${orderDetails}\n\nTotal: $${totalAmount}`);
   
     // Reset the cart
