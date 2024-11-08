@@ -37,7 +37,11 @@ nav.scrolled a {
     transition: 0.3s ease-in;
 }
 
-/* Styling for the Logo in the Navbar */
+nav.scrolled a:hover {
+    color: rgba(244, 0, 0, 0.838) !important;
+    transition: 0.3s;
+}
+
 .nav-left img {
     height: 40px;
     width: 50px;
@@ -303,14 +307,12 @@ nav.scrolled a {
     flex-direction: row-reverse;
 }
 
-/* Unfilled star styling */
 .star-rating .fa-star {
     font-size: 50px;
-    color: white; /* Default unfilled color */
+    color: white;
     cursor: pointer;
 }
 
-/* Hover effect: turn current star and previous stars gold */
 .star-rating .fa-star:hover,
 .star-rating .fa-star:hover ~ .fa-star {
     color: gold;
@@ -318,7 +320,7 @@ nav.scrolled a {
 }
 
 .star-rating .fa-star.filled {
-    color: gold; /* Fills star color when clicked */
+    color: gold;
 }
 
 .star-rating input {
@@ -405,7 +407,7 @@ nav.scrolled a {
     text-align: center;
     width: 85%;
     margin: 0 auto;
-    max-width: 100%; /* Ensures it doesn't exceed parent container */
+    max-width: 100%;
 }
 
 #review-description {
@@ -459,7 +461,6 @@ nav.scrolled a {
     margin: 20px;
 }
 
-/* Flexbox layout for rows in the cart */
 .cart-row {
     display: flex;
 }
