@@ -20,10 +20,21 @@ nav {
     display: flex;
     background-color: rgb(20, 20, 20);
     justify-content: space-between;
-    padding: 30px;
+    padding: 15px 30px;
     position: fixed;
     width: 100%;
     z-index: 1000;
+}
+
+nav.scrolled {
+    background-color: white;
+    color: black;
+    transition: 0.3s ease-in;
+}
+
+nav.scrolled a {
+    color: black !important;
+    transition: 0.3s ease-in;
 }
 
 /* Styling for the Logo in the Navbar */

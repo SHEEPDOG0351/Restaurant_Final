@@ -101,7 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Wait for the DOM to fully load before executing the script
-document.addEventListener("DOMContentLoaded", function() {
     // Select the purchase button and add an event listener to handle purchase click
     const purchaseButton = document.querySelector(".btn-purchase");
     purchaseButton.addEventListener("click", handlePurchaseClicked);
@@ -117,7 +116,6 @@ document.addEventListener("DOMContentLoaded", function() {
     addMealToOrderButtons.forEach(button => {
         button.addEventListener("click", addMealToCartClicked);  // Trigger adding meal to the cart
     });
-});
 
 // Function to handle the purchase button click
 function handlePurchaseClicked() {
@@ -338,3 +336,17 @@ function removeCartItem(event) {
     buttonClicked.closest(".cart-row").remove(); // Remove the item row from the cart
     updateCartTotal(); // Recalculate the cart total after removal
 }
+
+const nav = document.querySelector("nav");
+
+    window.addEventListener("scroll", function () {
+        const navHeight = nav.offsetHeight;
+
+        if (window.scrollY > navHeight) {
+            nav.classList.add("scrolled");
+            console.log("Scrolled class added");
+        } else {
+            nav.classList.remove("scrolled");
+            console.log("Scrolled class removed");
+        }
+    });
