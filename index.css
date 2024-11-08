@@ -20,10 +20,21 @@ nav {
     display: flex;
     background-color: rgb(20, 20, 20);
     justify-content: space-between;
-    padding: 30px;
+    padding: 15px 30px;
     position: fixed;
     width: 100%;
     z-index: 1000;
+}
+
+nav.scrolled {
+    background-color: white;
+    color: black;
+    transition: 0.3s ease-in;
+}
+
+nav.scrolled a {
+    color: black !important;
+    transition: 0.3s ease-in;
 }
 
 /* Styling for the Logo in the Navbar */
@@ -537,8 +548,6 @@ nav {
     text-align: center;
     font-size: 1.2em;
     margin-right: 25px;
-<<<<<<< HEAD
-=======
 }
 
 footer {
@@ -623,5 +632,4 @@ footer {
 #facebook:hover {
     color: #1877F2;
     cursor: pointer;
->>>>>>> 43c1a044873815e5cdfffc9f55abed08dc0747a8
 }
