@@ -50,6 +50,7 @@ nav.scrolled a:hover {
 }
 
 .nav-right {
+    display: flex;
     float: right;
     padding-right: 150px;
 }
@@ -58,6 +59,7 @@ nav.scrolled a:hover {
     list-style-type: none;
     display: flex;
     gap: 40px;
+    align-items: center;
 }
 
 .nav-right li{
