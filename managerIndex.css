@@ -11,11 +11,6 @@ body {
     font-weight: 400;
 }
 
-.headers-text {
-    font-family: 'Playfair Display', Arial;
-    font-weight: 600;
-}
-
 nav {
     display: flex;
     background-color: rgb(20, 20, 20);
@@ -58,377 +53,245 @@ nav {
     color: rgba(244, 0, 0, 0.838);
 }
 
-.main-page {
-    position: relative;
-    height: 100vh;
-    /* No background image here */
-}
-
-.main-page::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('food_2_background.jpg'); 
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    z-index: -2;
-}
-
-.main-page::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: -1;
-}
-
-.main-content {
-    position: relative;
-    z-index: 1;
-}
-
-.main-body {
-    padding-left: 150px;
-    padding-top: 200px;
-    color: white;
-}
-
-.main-body h1 {
-    font-size: 70px;
-    background-color: rgb(20, 20, 20);
-    margin-right: 150px;
-    padding: 10px;
-    border: 3px solid white;
-    border-bottom: none;
-}
-
-.main-body p {
-    font-size: 30px;
-    margin-right: 150px;
-    padding: 10px;
-
-}
-
-.paras
-{
-    background-color:  rgb(20, 20, 20);
-    border: 3px solid white;
-    margin-right: 150px;
-    border-top: none;
-}
-
 
 /*Start of the menu styles*/
+/* Meal Section Styling */
 .menu-section {
-    padding: 50px 150px;
-    color: white;
-    background-color: black;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
 }
 
 .menu-section h2 {
-    font-size: 40px;
+    font-size: 2.5em;
+    color: #333;
+    text-align: center;
     margin-bottom: 30px;
 }
 
-.menu-pair {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    align-items: flex-start;
-    margin-bottom: 30px;
-    background-color: #333;
-    padding: 20px; 
+/* Meal container */
+#menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+/* Individual Meal Styling */
+.meal {
+    background-color: #fff;
+    width: 300px; /* Fixed width for each meal */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.meal:hover {
+    transform: translateY(-10px);
+}
+
+/* Meal Image */
+.meal-item-image {
+    width: 100%;  /* Makes sure the image takes full width */
+    height: auto;  /* Maintain aspect ratio */
+    object-fit: cover;  /* Ensure the image doesn't stretch */
     border-radius: 8px;
-    margin-bottom: 30px;
 }
 
-.menu-item {
-    display: flex;
-    align-items: flex-start;
-}
-
-.menu-item-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
-    margin-right: 20px;
-    object-fit: cover;
-}
-
-.menu-item-details h3 {
-    font-size: 24px;
-    margin: 0;
-}
-
-.menu-item-details p {
-    font-size: 16px;
-    margin-top: 5px;
-    color: #cccccc;
-}
-.drink-item {
-    display: flex;
-    align-items: flex-start; /* Aligns items vertically at the start */
-}
-
-.drink-item-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
-    margin-right: 20px;
-    object-fit: cover;
-    margin-top: 10px;
-}
-
-.drink-item-details {
-    display: flex;
-    flex-direction: column; /* Stacks the drink name and description vertically */
-    margin-top: 10px;
-}
-
-.drink-item h3 {
-    font-size: 24px;
-    margin: 0 0 10px; 
-}
-
-.drink-item p {
-    font-size: 16px;
-    color: #cccccc;
-}
-
-.side-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 20px;
-}
-
-.side-item-image {
-    width: 80px;
-    height: 80px;
-    border-radius: 10px;
+/* Meal Title */
+.meal-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+    margin-top: 15px;
     margin-bottom: 10px;
-    object-fit: cover;
 }
 
-.side-item h3 {
-    font-size: 20px;
-    margin: 0 0 5px;
+/* Meal Item Name */
+.meal-item-name {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #555;
+    margin: 10px 0;
 }
 
-.side-item p {
-    font-size: 16px;
+/* Meal Description */
+.meal-description {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 10px;
 }
 
-.meal-pair {
-    text-align: center; /* Centers the meal pair content */
-    margin: 40px 0; /* Adds space above and below the meal pair */
+/* Meal Item Price */
+.meal-item-price {
+    font-size: 1.1em;
+    color: green;
+    font-weight: bold;
+    margin-top: 5px;
 }
 
-.meal-header {
-    font-size: 32px; 
-    color: white; 
-}
-
-.meal-price {
-    font-size: 24px;
-    margin: 10px 0; /* Adds space above and below the price */
-    color: #cccccc; 
-}
-
+/* Add to Order Button */
 .add-to-order {
-    background-color: #ff4444; 
-    color: white; 
-    border: none; 
-    padding: 10px 20px; 
-    border-radius: 5px; 
-    cursor: pointer; 
-    font-size: 16px; 
-    margin-top: 10px; /* Space between price and button */
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
 .add-to-order:hover {
-    background-color: #ff2222;
+    background-color: #45a049;
 }
 
-.reviews-main {
-    background: linear-gradient(180deg, rgb(43, 43, 43), rgb(13, 13, 13));
-    padding: 10px;
-}
-
-.reviews-main h1 {
-    text-align: center;
-    color: white;
-}
-
-.divider {
-    height: 1px;
-    background-color: #aaaaaa;
-    width: 75%;
-    margin: 0 auto;
-    margin-bottom: 40px;
-}
-
-.reviews-body {
+/* Layout for Meal Items */
+.meal-items {
     display: flex;
-    justify-content: center;
-    flex-direction: row-reverse;
-    margin: 0 auto;
-    width: 85%;
-}
-
-#reviews-header {
-    padding: 20px;
-    font-size: 60px;
-}
-
-.star-rating {
-    display: flex;
-    flex-direction: row-reverse;
-}
-
-/* Unfilled star styling */
-.star-rating .fa-star {
-    font-size: 50px;
-    color: white; /* Default unfilled color */
-    cursor: pointer;
-}
-
-/* Hover effect: turn current star and previous stars gold */
-.star-rating .fa-star:hover,
-.star-rating .fa-star:hover ~ .fa-star {
-    color: gold;
-
-}
-
-.star-rating .fa-star.filled {
-    color: gold; /* Fills star color when clicked */
-}
-
-.star-rating input {
-    padding: 0 0 100px 0;
-    width: 50%;
-}
-
-.review-input-body {
-    width: 75%;
-    padding-top: 20px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
     flex-direction: column;
+    gap: 15px;
 }
 
-.review-input-body input {
-    height: 100%;
-    width: 100%;
-    outline: none;
-    background: white;
-    border: 1px #121212 solid;
-    padding: 10px 0 100px 10px;
-    border-radius: 5px;
-    font-family: 'Cormorant', Arial;
-    font-size: 25px;
+/* Meal Info */
+.meal-info {
+    text-align: left;
+    margin-top: 15px;
 }
 
-#full {
-    padding: 10px 0 20px 10px;
-    margin-bottom: 15px;
+/* Price Section */
+.meal-price {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: green;
+    margin-top: 10px;
 }
 
-.review-input-body button {
-    width: 20%;
-    margin: 0 auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 20px 10px;
-    font-size: 25px;
-    font-family: 'Playfair Display', Arial;
-    font-weight: 700;
-    background-color: #ff4444;
-    color: white;
-    border: 1px #ff4444 solid;
-    border-radius: 5px;
-}
-
-.review-input-body button:hover {
-    background-color: white;
-    transition: 0.3s;
-    border: 1px white solid;
-}
-
-.review-entry {
-    width: 75%;
-    color: white;
-    margin: 0 auto;
-    padding-top: 20px;
-    background-color: black;
-    margin-top: 20px;
-    margin-bottom: 50px;
-}
-
-#review-divider {
-    margin-bottom: 10px !important;
-}
-
-.review-entry p:first-child {
-    font-weight: 700;
-    font-size: 50px;
-    color: white;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-#rating {
-    text-align: center;
-    font-size: 60px;
-    padding-bottom: 10px;
-}
-
-.review-description-container {
-    text-align: center;
-    width: 85%;
-    margin: 0 auto;
-    max-width: 100%; /* Ensures it doesn't exceed parent container */
-}
-
-#review-description {
-    text-align: center;
-    font-size: 35px;
-    padding: 0 20px 40px 20px;
-    font-weight: 200;
-    font-family: 'Cormorant', Arial;
-    overflow-wrap: break-word;
-}
-
-.review-button-container {
+/* Button Section */
+.add-to-order-container {
     display: flex;
     justify-content: center;
-}
-
-.delete-button {
-    width: 20%;
-    margin: 0 auto;
     margin-top: 20px;
-    padding: 15px 5px;
-    font-size: 25px;
-    font-family: 'Playfair Display', Arial;
-    font-weight: 700;
-    background-color: rgba(244, 0, 0, 0.838);
-    border: 1px rgba(244, 0, 0, 0.838) solid;
-    border-radius: 5px;
-    margin-bottom: 30px;
 }
 
-.delete-button:hover {
-    background-color: white;
-    transition: 0.3s;
-    border: 1px white solid;
+/* General Button Styling for Meal Section */
+button {
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Button Hover Effect */
+button:hover {
+    background-color: green;
+}
+
+/* Button Grouping for Meal Actions */
+.meal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Spacing between buttons */
+    margin-top: 10px;
+}
+
+/* Styling for Each Button Type in Meal Section */
+#add-meal-btn {
+    font-size: 14px; /* Smaller font size for Add Meal button */
+    padding: 8px 16px; /* Adjusted padding */
+}
+
+#edit-meal-btn, #edit-item-btn, #remove-meal-btn, #remove-item-btn {
+    font-size: 14px; /* Ensures consistency in button size */
+    padding: 8px 16px; /* Adjusted padding */
+}
+
+/* Style for buttons in the meal section container */
+.meal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.meal-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Meal Title Styling */
+.meal-container h3 {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #333;
+}
+
+/* Meal Description */
+.meal-container p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Price Styling */
+.meal-container .meal-price {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Flexbox for Buttons at the Bottom */
+.meal-container .meal-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Customize the "Add Meal" Button to be consistent with others */
+#add-meal-btn {
+    background-color: red;
+    color: white;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#add-meal-btn:hover {
+    background-color: green;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .meal {
+        width: 100%;
+        margin: 0;
+    }
+    
+    #menu-container {
+        justify-content: center;
+    }
+
+    .meal-item-image {
+        width: 90%;
+    }
 }
 
 /*Start of the Ordering section*/
@@ -538,7 +401,7 @@ nav {
     font-size: 1.2em;
     margin-right: 25px;
 }
-
+/*Styling for the footer*/
 footer {
     background: black;
 }
