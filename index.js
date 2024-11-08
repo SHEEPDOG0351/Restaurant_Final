@@ -1,352 +1,140 @@
-document.addEventListener("DOMContentLoaded", function () {
-    let selectedRating = 0;
-
-    const stars = document.querySelectorAll(".star-rating .fa-star");
-    const reviewButton = document.querySelector(".review-input-body button");
-    const reviewInput = document.querySelector(".review-input-body input:nth-of-type(2)");
-    const nameInput = document.getElementById("full");
-    const reviewSection = document.querySelector(".reviews-main");
-
-    function updateStars(rating) {
-        stars.forEach(star => {
-            const starValue = parseInt(star.getAttribute("data-value"));
-            star.classList.toggle("filled", starValue <= rating);
-        });
+// The updated menu data
+const menu = [
+    {
+      meal: "Grilled Salmon Meal", totalPrice: 36.97,
+      items: [
+        { name: "Grilled Salmon", description: "A perfectly grilled salmon with a side of vegetables.", price: 12.99, image: "https://www.wholesomeyum.com/wp-content/uploads/2023/05/wholesomeyum-Grilled-Salmon-10-500x500.jpg" },
+        { name: "Green Bean Casserole", description: "A savory green bean casserole to complement your meal.", price: 8.99, image: "https://thecozyapron.com/wp-content/uploads/2012/11/green-bean-casserole_thecozyapron_1.jpg" },
+        { name: "White Wine", description: "A crisp glass of white wine to complement the salmon.", price: 9.99, image: "https://www.wine-searcher.com/images/wine_style/white-buttery-and-complex-8-1-2.jpg?width=734" }
+      ]
+    },
+    {
+      meal: "Classic Burger Meal", totalPrice: 22.97,
+      items: [
+        { name: "Classic Burger", description: "Juicy beef patty with lettuce, tomato, and cheese.", price: 11.99, image: "https://www.munchkintime.com/wp-content/uploads/2017/06/Best-Hamburger-Recipe-to-make-for-Fathers-Day-from-Munchkintime.com-46.jpg" },
+        { name: "French Fries", description: "Crispy French fries seasoned to perfection.", price: 4.99, image: "https://live.staticflickr.com/4555/38309468832_94d1e3c0f0_h.jpg" },
+        { name: "Craft Beer", description: "A cold, refreshing craft beer that pairs well with a burger.", price: 5.99, image: "https://catalogue.novascotia.com/ManagedMedia/25567.jpg" }
+      ]
+    },
+    {
+      meal: "Caesar Salad Meal", totalPrice: 25.97,
+      items: [
+        { name: "Caesar Salad", description: "Crisp romaine lettuce with Caesar dressing and croutons.", price: 7.99, image: "https://natashaskitchen.com/wp-content/uploads/2019/01/Caesar-Salad-Recipe-3.jpg" },
+        { name: "Crispy Roasted Potatoes", description: "Seasoned roasted potatoes that add crunch to your meal.", price: 5.99, image: "https://www.kitchensanctuary.com/wp-content/uploads/2019/04/Roast-potatoes-with-salt-and-fresh-thyme-leaves-square-FS.jpg" },
+        { name: "Iced Tea", description: "Chilled iced tea to enjoy with a light, refreshing salad.", price: 3.99, image: "https://i.ytimg.com/vi/R88FeOepf-0/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAbz7J0doXy0u6MpmfwXqye9xRNhQ" }
+      ]
     }
-
-    loadReviews();
-
-    stars.forEach(star => {
-        star.addEventListener("click", function () {
-            const ratingValue = parseInt(this.getAttribute("data-value"));
-            selectedRating = (selectedRating === ratingValue) ? 0 : ratingValue;
-            updateStars(selectedRating);
-        });
+  ];
+  
+  // Dynamically render the menu with meals and items
+  function renderMenu() {
+    const menuContainer = document.getElementById('menu-container');
+    menu.forEach(meal => {
+      const mealElement = document.createElement('div');
+      mealElement.classList.add('meal');
+  
+      // Add meal title and total price
+      let mealHTML = `
+        <h3 class="meal-title">${meal.meal} - $${meal.totalPrice.toFixed(2)}</h3>
+        <div class="meal-items">
+      `;
+  
+      // Loop through each item in the meal and add it to the HTML
+      meal.items.forEach(item => {
+        mealHTML += `
+          <div class="meal-item">
+            <img src="${item.image}" alt="${item.name}" class="meal-item-image">
+            <h4 class="meal-item-name">${item.name}</h4>
+            <p class="meal-item-description">${item.description}</p>
+            <p class="meal-item-price">$${item.price.toFixed(2)}</p>
+          </div>
+        `;
+      });
+  
+      mealHTML += `
+        </div>
+        <button class="btn btn-primary add-to-order" onclick="addToOrder('${meal.meal}', ${meal.totalPrice})">Add to Order</button>
+      `;
+  
+      mealElement.innerHTML = mealHTML;
+      menuContainer.appendChild(mealElement);
     });
-
-    reviewButton.addEventListener("click", function () {
-        const reviewText = reviewInput.value.trim();
-        const userName = nameInput.value.trim();
-
-        if (selectedRating === 0) {
-            alert("Please select a star rating.");
-            return;
-        }
-        if (!userName) {
-            alert("Please enter your full name.");
-            return;
-        }
-        if (!reviewText) {
-            alert("Please enter a review description.");
-            return;
-        }
-
-        // Create the review object with a unique ID
-        const review = {
-            id: Date.now(), // Unique ID based on timestamp
-            name: userName,
-            rating: selectedRating,
-            description: reviewText,
-        };
-
-        saveReview(review);
-        displayReview(review);
-
-        selectedRating = 0;
-        nameInput.value = "";
-        reviewInput.value = "";
-        updateStars(0);
+  }
+  
+  // Function to handle adding items to the cart
+  let cart = [];
+  
+  function addToOrder(mealName, totalPrice) {
+    const item = { mealName, totalPrice, quantity: 1 };
+  
+    // Check if meal already exists in the cart
+    const existingItemIndex = cart.findIndex(cartItem => cartItem.mealName === mealName);
+    if (existingItemIndex > -1) {
+      // Update the quantity if the meal already exists
+      cart[existingItemIndex].quantity++;
+    } else {
+      // Add new meal to the cart
+      cart.push(item);
+    }
+  
+    updateCartDisplay();
+  }
+  
+  // Function to update the cart display
+  function updateCartDisplay() {
+    const cartItemsContainer = document.querySelector('.cart-items');
+    const cartTotalPrice = document.querySelector('.cart-total-price');
+  
+    // Clear the cart display
+    cartItemsContainer.innerHTML = '';
+    let total = 0;
+  
+    // Loop through cart items and display them
+    cart.forEach(item => {
+      const cartItem = document.createElement('div');
+      cartItem.classList.add('cart-row');
+      cartItem.innerHTML = `
+        <span class="cart-item">${item.mealName}</span>
+        <span class="cart-price">$${item.totalPrice.toFixed(2)}</span>
+        <span class="cart-quantity">${item.quantity}</span>
+      `;
+      cartItemsContainer.appendChild(cartItem);
+      total += item.totalPrice * item.quantity;
     });
-
-    function displayReview(review) {
-        const reviewEntry = document.createElement("div");
-        reviewEntry.classList.add("review-entry");
-        reviewEntry.setAttribute("data-id", review.id);
-
-        reviewEntry.innerHTML = `<p><strong>${review.name}</strong></p>
-                                 <div id="review-divider" class="divider"></div>
-                                 <p id="rating">${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}</p>
-                                 <div class="review-description-container">
-                                    <p id="review-description">${review.description}</p>
-                                 </div>
-                                 <div class="review-button-container">
-                                    <button class="delete-button">Delete</button>
-                                 </div>`;
-
-        reviewSection.appendChild(reviewEntry);
-
-        // Add event listener for delete button
-        reviewEntry.querySelector(".delete-button").addEventListener("click", function () {
-            deleteReview(review.id);
-            reviewEntry.remove(); // Remove from UI
-        });
-    }
-
-    function saveReview(review) {
-        let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
-        reviews.push(review);
-        localStorage.setItem("reviews", JSON.stringify(reviews));
-    }
-
-    function loadReviews() {
-        const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
-        reviews.forEach(displayReview);
-    }
-
-    function deleteReview(id) {
-        let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
-        reviews = reviews.filter(review => review.id !== id); // Filter out the review to delete
-        localStorage.setItem("reviews", JSON.stringify(reviews));
-    }
-});
-
-// Wait for the DOM to fully load before executing the script
-    // Select the purchase button and add an event listener to handle purchase click
-    const purchaseButton = document.querySelector(".btn-purchase");
-    purchaseButton.addEventListener("click", handlePurchaseClicked);
-    
-    // Select all 'Add to Order' buttons for individual items and add event listeners
-    const addToOrderButtons = document.querySelectorAll(".add-to-order");
-    addToOrderButtons.forEach(button => {
-        button.addEventListener("click", addToCartClicked);  // Trigger adding item to the cart
-    });
-
-    // Select all 'Add Meal to Order' buttons for meal sections and add event listeners
-    const addMealToOrderButtons = document.querySelectorAll(".meal-header .add-to-order");
-    addMealToOrderButtons.forEach(button => {
-        button.addEventListener("click", addMealToCartClicked);  // Trigger adding meal to the cart
-    });
-
-// Function to handle the purchase button click
-function handlePurchaseClicked() {
-    // Check if the user is logged in using localStorage
+  
+    // Update the total price
+    cartTotalPrice.innerText = `$${total.toFixed(2)}`;
+  }
+  
+  // Function to handle the purchase button click
+  function handlePurchaseClicked() {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-
+  
     if (!isLoggedIn) {
-        alert("Please sign in before trying to purchase items.");
-        return; // Prevent the transaction from continuing
+      alert("Please sign in before trying to purchase items.");
+      return; // Prevent the transaction from continuing
     }
-    
-    // Capture the cart items container and its rows
-    const cartItemsContainer = document.querySelector(".cart-items");
-    const cartRows = cartItemsContainer.querySelectorAll(".cart-row");
-
-    let orderDetails = ''; // Store the details of the items in the order
-    let totalAmount = 0;  // Initialize the total amount to 0
-
-    // Loop through each cart row to extract item details (name, price, and quantity)
-    cartRows.forEach(row => {
-        const itemName = row.querySelector(".cart-item-title").innerText;
-        const itemPrice = parseFloat(row.querySelector(".cart-price").innerText.replace('$', '')); // Price of the item
-        const quantity = parseInt(row.querySelector(".cart-quantity-input").value); // Quantity selected by the user
-
-        const itemTotal = itemPrice * quantity; // Calculate total for this item
-        totalAmount += itemTotal; // Add item total to the overall total amount
-
-        // Add item details to the orderDetails string
-        orderDetails += `<p>${itemName} - $${itemPrice.toFixed(2)} x ${quantity} = $${itemTotal.toFixed(2)}</p>`;
-    });
-
-    // Generate the receipt HTML content to display the order details
-    const receiptPage = `
-        <html>
-            <head>
-                <title>Receipt</title>
-                <style>
-                    body {
-                        font-family: Arial, sans-serif;
-                        margin: 40px;
-                    }
-                    h1 {
-                        color: #333;
-                    }
-                    .receipt-container {
-                        border: 1px solid #ccc;
-                        padding: 20px;
-                        width: 60%;
-                        margin: 0 auto;
-                    }
-                    .total {
-                        font-weight: bold;
-                        font-size: 1.2em;
-                    }
-                </style>
-            </head>
-            <body>
-                <div class="receipt-container">
-                    <h1>Your Receipt</h1>
-                    <div class="order-details">
-                        ${orderDetails}
-                    </div>
-                    <div class="total">
-                        Total: $${totalAmount.toFixed(2)}
-                    </div>
-                </div>
-            </body>
-        </html>
-    `;
-
-    // Open a new window or tab to display the receipt page
-    const newWindow = window.open();
-    newWindow.document.write(receiptPage);
-    newWindow.document.close();
-
-    // Clear the cart after the purchase and update the cart total
-    cartItemsContainer.innerHTML = ''; // Empty the cart items
-    updateCartTotal(); // Recalculate the total after clearing the cart
-}
-
-// Function to handle adding an individual item to the cart
-function addToCartClicked(event) {
-    const button = event.target; // Get the button that was clicked
-    const menuItem = button.closest(".menu-item, .drink-item, .side-item"); // Find the closest item (menu, drink, or side)
-
-    const itemImageSrc = menuItem.querySelector("img").src; // Get the image source of the item
-    const itemName = menuItem.querySelector("h3").innerText; // Get the name of the item
-    const priceText = menuItem.querySelector("#price").innerText; // Get the price text of the item
-    const itemPrice = parseFloat(priceText.replace("Price: $", "")); // Convert the price to a number
-
-    // Add the item to the cart and update the cart total
-    addItemToCart(itemImageSrc, itemName, itemPrice);
-    updateCartTotal();
-}
-
-// Function to handle adding a meal (with multiple items) to the cart
-function addMealToCartClicked(event) {
-    const button = event.target; // Get the button that was clicked
-    const mealSection = button.closest(".meal-header"); // Find the closest meal section
-
-    const mealName = mealSection.querySelector("h3").innerText; // Get the name of the meal
-    const priceText = mealSection.querySelector("#price").innerText; // Get the price text for the meal
-    const mealPrice = parseFloat(priceText.replace("Price for all items: $", "")); // Extract the price as a number
-
-    // Placeholder image for the meal (replace with actual image if needed)
-    const placeholderImage = "https://via.placeholder.com/150";
-
-    // Add the meal to the cart and update the cart total
-    addMealToCart(placeholderImage, mealName, mealPrice);
-    updateCartTotal();
-}
-
-// Function to add an individual item to the cart
-function addItemToCart(imageSrc, name, price) {
-    const cartItemsContainer = document.querySelector(".cart-items"); // Get the cart container
-    const cartItemNames = cartItemsContainer.querySelectorAll(".cart-item-title"); // Get all the item names in the cart
-
-    // Check if the item is already in the cart, if so, don't add it again
-    for (let i = 0; i < cartItemNames.length; i++) {
-        if (cartItemNames[i].innerText === name) {
-            alert("This item is already added to the cart");
-            return; // Exit the function if item already in cart
-        }
+  
+    purchaseClicked();
+  }
+  
+  // Function to handle purchases
+  function purchaseClicked() {
+    if (cart.length === 0) {
+      alert('Your cart is empty. Please add some items to your order.');
+      return;
     }
-
-    // Create a new row for the item in the cart
-    const cartRow = document.createElement("div");
-    cartRow.classList.add("cart-row"); // Add the class for cart row styling
-
-    const cartRowContents = `
-        <div class="cart-item cart-column">
-            <img class="cart-item-image" src="${imageSrc}" width="100" height="100"> <!-- Item image -->
-            <span class="cart-item-title">${name}</span> <!-- Item name -->
-        </div>
-        <span class="cart-price cart-column">$${price.toFixed(2)}</span> <!-- Item price -->
-        <div class="cart-quantity cart-column">
-            <input class="cart-quantity-input" type="number" value="1"> <!-- Quantity input -->
-            <button class="btn btn-danger" type="button">REMOVE</button> <!-- Remove button -->
-        </div>
-    `;
-    cartRow.innerHTML = cartRowContents;
-    cartItemsContainer.append(cartRow); // Append the new row to the cart
-
-    // Add event listeners to the quantity input and remove button
-    cartRow.querySelector(".cart-quantity-input").addEventListener("change", quantityChanged);
-    cartRow.querySelector(".btn-danger").addEventListener("click", removeCartItem);
-}
-
-// Function to add a meal to the cart
-function addMealToCart(imageSrc, name, price) {
-    const cartItemsContainer = document.querySelector(".cart-items");
-    const cartItemNames = cartItemsContainer.querySelectorAll(".cart-item-title");
-
-    // Check if the meal is already in the cart
-    for (let i = 0; i < cartItemNames.length; i++) {
-        if (cartItemNames[i].innerText === name) {
-            alert("This meal is already added to the cart");
-            return;
-        }
-    }
-
-    // Add the meal to the cart as a new row
-    const cartRow = document.createElement("div");
-    cartRow.classList.add("cart-row");
-
-    const cartRowContents = `
-        <div class="cart-item cart-column">
-            <img class="cart-item-image" src="${imageSrc}" width="100" height="100">
-            <span class="cart-item-title">${name}</span>
-        </div>
-        <span class="cart-price cart-column">$${price.toFixed(2)}</span>
-        <div class="cart-quantity cart-column">
-            <input class="cart-quantity-input" type="number" value="1">
-            <button class="btn btn-danger" type="button">REMOVE</button>
-        </div>
-    `;
-    cartRow.innerHTML = cartRowContents;
-    cartItemsContainer.append(cartRow);
-
-    // Add event listeners for the quantity input and remove button
-    cartRow.querySelector(".cart-quantity-input").addEventListener("change", quantityChanged);
-    cartRow.querySelector(".btn-danger").addEventListener("click", removeCartItem);
-}
-
-// Function to update the cart total price
-function updateCartTotal() {
-    const cartItemContainer = document.querySelector(".cart-items"); // Get the cart container
-    const cartRows = cartItemContainer.querySelectorAll(".cart-row"); // Get all cart rows
-    let total = 0; // Initialize total price to 0
-
-    // Loop through each cart row to calculate the total price
-    cartRows.forEach(row => {
-        const priceElement = row.querySelector(".cart-price");
-        const quantityElement = row.querySelector(".cart-quantity-input");
-
-        const price = parseFloat(priceElement.innerText.replace('$', '')); // Get the item price
-        const quantity = quantityElement.value; // Get the item quantity
-
-        total += price * quantity; // Add the price times quantity to the total
-    });
-
-    // Update the cart total price on the page
-    document.querySelector(".cart-total-price").innerText = `$${total.toFixed(2)}`;
-}
-
-// Function to handle quantity change
-function quantityChanged(event) {
-    const input = event.target;
-    if (input.value <= 0) {
-        input.value = 1; // Prevent the quantity from being 0 or negative
-    }
-    updateCartTotal(); // Recalculate the cart total after the quantity change
-}
-
-// Function to remove an item from the cart
-function removeCartItem(event) {
-    const buttonClicked = event.target;
-    buttonClicked.closest(".cart-row").remove(); // Remove the item row from the cart
-    updateCartTotal(); // Recalculate the cart total after removal
-}
-
-const nav = document.querySelector("nav");
-
-    window.addEventListener("scroll", function () {
-        const navHeight = nav.offsetHeight;
-
-        if (window.scrollY > navHeight) {
-            nav.classList.add("scrolled");
-            console.log("Scrolled class added");
-        } else {
-            nav.classList.remove("scrolled");
-            console.log("Scrolled class removed");
-        }
-    });
+  
+    const orderDetails = cart.map(item => `${item.quantity} x ${item.mealName} - $${(item.totalPrice * item.quantity).toFixed(2)}`).join('\n');
+    const totalAmount = cart.reduce((total, item) => total + item.totalPrice * item.quantity, 0).toFixed(2);
+  
+    alert(`Your Order:\n${orderDetails}\n\nTotal: $${totalAmount}`);
+  
+    // Reset the cart
+    cart = [];
+    updateCartDisplay();
+  }
+  
+  // Call renderMenu to display the meals on page load
+  window.onload = renderMenu;
+  
