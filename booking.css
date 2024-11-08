@@ -187,6 +187,120 @@ header p {
     display: block;
 }
 
+<<<<<<< HEAD
+=======
+/* Book Table Button */
+#book-tables {
+    background-color: #f44400;  
+    color: white;
+    font-size: 18px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;  /* Make it full width in its container */
+    margin-top: 20px;  /* Space above the button */
+}
+
+/* Button Hover Effect */
+#book-tables:hover {
+    background-color: #d63a00;  /* Darker shade for hover effect */
+    transform: translateY(-3px);  /* Slight lift effect on hover */
+}
+
+/* Button Focus Effect */
+#book-tables:focus {
+    outline: none;
+    box-shadow: 0 0 5px 2px rgba(244, 68, 0, 0.5);  /* Light orange glow on focus */
+}
+
+footer {
+    background: black;
+}
+
+.footer-body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-item-footer {
+    padding: 20px 0;
+}
+
+.nav-item-footer a{
+    font-size: 25px;
+    padding: 15px 0px 15px 0;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-item-footer a:hover {
+    color: rgba(244, 0, 0, 0.838);
+    transition: 0.3s;
+}
+
+.nav-item-footer {
+    padding-bottom: 20px;
+}
+
+.nav-footer ul{
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    display: flex;
+    width: 100%;
+    gap: 40px;
+    padding-top: 10px;
+}
+
+.footer-contact-info-container {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 35px;
+}
+
+.footer-contact-info-container > div {
+    padding: 0 30px;
+}
+
+.footer-contact-info p{
+    color: white;
+    font-size: 25px;
+    padding-bottom: 5px;
+}
+
+.social-media {
+    display: flex;
+}
+
+.social-media i {
+    font-size: 30px;
+    color: white;
+    padding: 10px 40px 10px 0;
+}
+
+#instagram:hover {
+    color: #d03893;
+    cursor: pointer;
+}
+
+#twitter:hover {
+    color: #1DA1F2;
+    cursor: pointer;
+}
+
+#facebook:hover {
+    color: #1877F2;
+    cursor: pointer;
+}
+
+
+>>>>>>> 43c1a044873815e5cdfffc9f55abed08dc0747a8
 /* Responsive Design */
 @media (max-width: 768px) {
     .table-card {
