@@ -31,6 +31,20 @@ function saveMenuToLocalStorage() {
   localStorage.setItem('menu', JSON.stringify(menu));
 }
 
+// Function to recalculate the total price of a meal based on its items
+function recalculateTotalPrice(mealIndex) {
+  const meal = menu[mealIndex];
+  
+  // Ensure all item prices are numbers
+  meal.totalPrice = meal.items.reduce((sum, item) => {
+    const itemPrice = parseFloat(item.price) || 0; // Ensure the price is a number
+    return sum + itemPrice;
+  }, 0);
+  
+  saveMenuToLocalStorage(); // Save the updated menu to localStorage
+  renderMenu(); // Re-render the menu with the updated total price
+}
+
 // Function to render the menu on the page
 function renderMenu() {
   const menuContainer = document.getElementById('menu-container');
@@ -55,7 +69,7 @@ function renderMenu() {
                   <img src="${item.image}" alt="${item.name}" class="meal-item-image">
                   <input type="text" class="meal-item-name" value="${item.name}" onchange="updateItem(${mealIndex}, ${itemIndex}, 'name', this.value)">
                   <textarea class="meal-item-description" onchange="updateItem(${mealIndex}, ${itemIndex}, 'description', this.value)">${item.description}</textarea>
-                  <input type="number" class="meal-item-price" value="${item.price}" onchange="updateItem(${mealIndex}, ${itemIndex}, 'price', this.value)">
+                  <input type="number" class="meal-item-price" value="${item.price}" onchange="updateItem(${mealIndex}, ${itemIndex}, 'price', this.value); recalculateTotalPrice(${mealIndex})">
                   <input type="text" class="meal-item-image-url" value="${item.image}" onchange="updateItem(${mealIndex}, ${itemIndex}, 'image', this.value)">
               </div>
           `;
@@ -98,13 +112,10 @@ function addNewMeal() {
   // Generate the meal's name by adding "Meal" to the main dish's name
   const mealName = mainDishName + " Meal";
 
-  // Calculate the total price by summing the prices of all items
-  const totalPrice = mainDishPrice + sideDishPrice + drinkPrice;
-
   // Create a new meal object
   const newMeal = {
       meal: mealName,
-      totalPrice: totalPrice,
+      totalPrice: mainDishPrice + sideDishPrice + drinkPrice, // Initialize the total price
       items: [
           { name: mainDishName, description: mainDishDescription, price: mainDishPrice, image: mainDishImage },
           { name: sideDishName, description: sideDishDescription, price: sideDishPrice, image: sideDishImage },
