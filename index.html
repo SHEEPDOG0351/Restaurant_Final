@@ -45,7 +45,7 @@
     <div class="menu-section">
         <h2 id="menu-section">Menu</h2>
 
-        <div id="menu-container"></div>
+        <div id="menu-container"></div> <!-- Menu will be dynamically rendered here -->
     </div>
 
     <section class="container content-section" id="order-section">
@@ -57,14 +57,14 @@
             <span class="cart-quantity cart-header cart-column">Quantity</span>
         </div>
         
-        <div class="cart-items"></div>
+        <div class="cart-items"></div> <!-- Cart items will be displayed here -->
 
         <div class="cart-total">
             <strong class="cart-total-title">Total</strong>
             <span class="cart-total-price">$0.00</span>
         </div>
 
-        <button class="btn btn-primary btn-purchase" type="button" onclick="purchaseClicked()">PURCHASE</button>
+        <button class="btn btn-primary btn-purchase" type="button" onclick="handlePurchaseClicked()">PURCHASE</button>
     </section>
 
     <div class="reviews-main" id="reviews">
@@ -83,7 +83,11 @@
         <div class="review-input-body">
             <input id="full" placeholder="Type Full Name for Review" type="text">
             <input placeholder="Give us a description!" type="text">
-            <button>Place Review</button>    
+            <button onclick="handleReviewSubmission()">Place Review</button>    
+        </div>
+
+        <div class="reviews-body">
+            <!-- Reviews will be dynamically loaded here -->
         </div>
     </div>
 

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant</title>
+    <title>The Flavour Forge - Manager's View</title>
     <link rel="stylesheet" href="managerIndex.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Imports font awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Imports Font Awesome icons -->
 </head>
 <body>
     <div class="main-page">
@@ -21,14 +21,15 @@
                 </ul>
             </div>
         </nav>
+
         <div class="main-content">
             <div class="main-body" id="main-body">
                 <div class="main-back">
                     <h1 class="headers-text">The Flavour Forge</h1>
                     <div class="paras">
                         <p>Welcome to The Flavour Forge, where culinary artistry meets exquisite taste. 
-                            Our mission is to provide you with an unforgettable dining experience that celebrates the rich tapestry of flavors from around the world. 
-                            Each dish is crafted with passion and precision, using only the finest ingredients sourced from local farms and international markets.</p>         
+                        Our mission is to provide you with an unforgettable dining experience that celebrates the rich tapestry of flavors from around the world. 
+                        Each dish is crafted with passion and precision, using only the finest ingredients sourced from local farms and international markets.</p>         
                     </div>
                 </div>
             </div>
@@ -36,12 +37,13 @@
     </div>
 
     <div class="menu-section">
-        <h2 id="menu-section">Menu - Manager's View <button  id="add-meal-btn" class="btn btn-add">Add Meal</button></h2>
+        <h2 id="menu-section">
+            Menu - Manager's View
+            <button id="add-meal-btn" class="btn btn-add">Add Meal</button>
+        </h2>
 
-        <div id="menu-container"></div>
+        <div id="menu-container"></div> <!-- This is where the dynamic menu will be rendered -->
     </div>
-
-
 
     <footer>
         <div class="footer-body">
@@ -69,7 +71,7 @@
         </div>
     </footer>
 
+    <!-- Link to external JavaScript -->
     <script src="managerIndex.js"></script>
-
 </body>
 </html>
