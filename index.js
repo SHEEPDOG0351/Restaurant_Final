@@ -4,6 +4,18 @@ function loadMenu() {
   return savedMenu ? JSON.parse(savedMenu) : menu; // Fallback to default menu if no data in localStorage
 }
 
+const nav = document.querySelector("nav");
+    window.addEventListener("scroll", function () {
+        const navHeight = nav.offsetHeight;
+        if (window.scrollY > navHeight) {
+            nav.classList.add("scrolled");
+            console.log("Scrolled class added");
+        } else {
+            nav.classList.remove("scrolled");
+            console.log("Scrolled class removed");
+        }
+  });
+
 // Dynamically render the menu with meals and items
 function renderMenu() {
   const menuData = loadMenu(); // Load the menu (from localStorage or default)
