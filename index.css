@@ -440,6 +440,7 @@ nav.scrolled a:hover {
 .star-rating .fa-star:hover,
 .star-rating .fa-star:hover ~ .fa-star {
     color: gold;
+    transition: 0.3s ease-in;
 
 }
 
