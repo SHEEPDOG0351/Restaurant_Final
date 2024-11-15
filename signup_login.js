@@ -22,9 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
     
-    // This is a tracker to see if the user is logged in
-    // Used for places where the user must be logged in to do something
+    // Initialize login state to 'false'
     localStorage.setItem('isLoggedIn', 'false');
+    
     // Login form functionality
     const loginForm = document.querySelector(".input-boxes button");
     if (loginForm) {
@@ -34,14 +34,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Retrieve user data from localStorage
             const storedUserData = JSON.parse(localStorage.getItem(email));
+
             if (storedUserData && storedUserData.password === password) {
-                location.replace("index.html");
+                // Set the login status to true and store email in localStorage
                 localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('loggedInEmail', email);  // Store the email of the logged-in user
+                location.replace("index.html"); // Redirect to the main page after successful login
             } else {
                 alert("Invalid email or password.");
             }
         });
     }
-
 });
-

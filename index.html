@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant</title>
     <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Imports font awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
 </head>
 <body>
     <div class="main-page">
@@ -48,7 +48,7 @@
         <div id="menu-container"></div> <!-- Menu will be dynamically rendered here -->
     </div>
 
-    <section class="container content-section" id="order-section">
+    <section class="container content-section cart" id="order-section">
         <h2 class="section-header" id="order-section">Order Here</h2>
         
         <div class="cart-row">
@@ -60,8 +60,24 @@
         <div class="cart-items"></div> <!-- Cart items will be displayed here -->
 
         <div class="cart-total">
-            <strong class="cart-total-title">Total</strong>
+            <strong class="cart-total-title">Total: </strong>
             <span class="cart-total-price">$0.00</span>
+        </div>
+
+            <!-- New container for tip and payment options -->
+        <div class="purchase-container">
+            <!-- Tip input field -->
+            <label for="tip-input">Add Tip:</label>
+            <input type="number" id="tip-input" placeholder="Enter tip amount" step="0.01" min="0">
+            
+            <!-- Payment method options -->
+            <div class="payment-options">
+            <p>Select Payment Method:</p>
+            <input type="radio" id="card" name="payment-method" value="Card" checked>
+            <label for="card">Card</label>
+            <input type="radio" id="cash" name="payment-method" value="Cash">
+            <label for="cash">Cash</label>
+            </div>
         </div>
 
         <button class="btn btn-primary btn-purchase" type="button" onclick="handlePurchaseClicked()">PURCHASE</button>
