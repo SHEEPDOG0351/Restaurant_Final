@@ -1,5 +1,5 @@
-// Initial Menu Data (Loaded from localStorage or Default to Sample Menu)
-let menu = JSON.parse(localStorage.getItem('menu')) || [
+// Initial Default Menu Data
+const defaultMenu = [
   {
     meal: "Grilled Salmon Meal", totalPrice: 36.97,
     items: [
@@ -15,8 +15,59 @@ let menu = JSON.parse(localStorage.getItem('menu')) || [
       { name: "French Fries", description: "Crispy French fries seasoned to perfection.", price: 4.99, image: "https://live.staticflickr.com/4555/38309468832_94d1e3c0f0_h.jpg" },
       { name: "Craft Beer", description: "A cold, refreshing craft beer that pairs well with a burger.", price: 5.99, image: "https://catalogue.novascotia.com/ManagedMedia/25567.jpg" }
     ]
+  },
+  {
+    meal: "Spaghetti Carbonara Meal", totalPrice: 25.97,
+    items: [
+      { name: "Spaghetti Carbonara", description: "Classic Italian pasta dish with creamy sauce and pancetta.", price: 14.99, image: "https://www.errenskitchen.com/wp-content/uploads/2021/04/Spaghetti-Carbonara-SQUARE.jpg" },
+      { name: "Garlic Bread", description: "Crunchy garlic bread with butter and herbs.", price: 5.99, image: "https://feelgoodfoodie.net/wp-content/uploads/2021/02/Air-Fryer-Garlic-Bread-6.jpg" },
+      { name: "Red Wine", description: "Full-bodied red wine to complement the pasta.", price: 4.99, image: "https://www.wine-searcher.com/images/wine_style/red-rich-and-intense-8-1-2.jpg?width=734" }
+    ]
+  },
+  {
+    meal: "Fried Chicken Meal", totalPrice: 27.97,
+    items: [
+      { name: "Fried Chicken", description: "Crispy, golden fried chicken.", price: 12.99, image: "https://www.simplyrecipes.com/thmb/tZnpg_1VgUQuhGnTL8xZy3Ff6xU=/3000x2000/filters:fill(auto,1)/Simply-Recipes-Crispy-Fried-Chicken-LEAD-2-6797ef3ab623404cbec6b3230240b4b7.jpg" },
+      { name: "Mashed Potatoes", description: "Creamy mashed potatoes with gravy.", price: 6.99, image: "https://www.simplyrecipes.com/thmb/1TPu4SxVtLtTRs6A0f8o2ICvsiw=/2000x1333/filters:fill(auto,1)/Simply-Recipes-Mashed-Potatoes-LEAD-1-b11cf48b67f54b379f0e610b5325c4b0.jpg" },
+      { name: "Iced Tea", description: "Chilled iced tea to refresh your palate.", price: 7.99, image: "https://images.unsplash.com/photo-1597846848080-d2b2f4ffbac0" }
+    ]
+  },
+  {
+    meal: "Vegan Buddha Bowl", totalPrice: 24.99,
+    items: [
+      { name: "Quinoa Bowl", description: "Packed with fresh veggies, avocado, and tofu.", price: 15.99, image: "https://minimalistbaker.com/wp-content/uploads/2021/02/Easy-Quinoa-Buddha-Bowls-SQUARE.jpg" },
+      { name: "Hummus Plate", description: "Creamy hummus with pita bread.", price: 5.99, image: "https://www.simplyrecipes.com/thmb/NtSPiGoD9F0rH3c6L-py9xS9RpQ=/2000x1333/filters:fill(auto,1)/Simply-Recipes-Hummus-LEAD-01-470fa5a6b4f6440d8c6d7f840d2497eb.jpg" },
+      { name: "Green Smoothie", description: "A nutrient-rich green smoothie.", price: 3.99, image: "https://images.unsplash.com/photo-1561043433-aaf687c4cf4e" }
+    ]
+  },
+  {
+    meal: "BBQ Ribs Meal", totalPrice: 34.99,
+    items: [
+      { name: "BBQ Ribs", description: "Tender ribs with smoky BBQ sauce.", price: 17.99, image: "https://www.simplyrecipes.com/thmb/xF7d-4VrYKnV5RSjGQgPAWhXmoU=/2000x1500/filters:fill(auto,1)/Simply-Recipes-BBQ-Ribs-LEAD-1-5ddbb6575df947ec87c0d29a7740f8ae.jpg" },
+      { name: "Coleslaw", description: "Crispy coleslaw with a tangy dressing.", price: 6.99, image: "https://www.simplyrecipes.com/thmb/WZ6Q_2To7R9R3yNrA_n6K9QjX0A=/2000x1333/filters:fill(auto,1)/Simply-Recipes-Coleslaw-LEAD-3-4b95a5d8af39433a90241d66cb872b21.jpg" },
+      { name: "Lemonade", description: "Freshly squeezed lemonade.", price: 9.99, image: "https://images.unsplash.com/photo-1504615755583-2916b52192d3" }
+    ]
   }
 ];
+
+// Function to Merge Default Menu with Stored Menu
+function loadMenu() {
+  const storedMenu = JSON.parse(localStorage.getItem('menu')) || [];
+  const mergedMenu = [...storedMenu];
+
+  // Add missing default meals
+  defaultMenu.forEach(defaultMeal => {
+    if (!storedMenu.some(storedMeal => storedMeal.meal === defaultMeal.meal)) {
+      mergedMenu.push(defaultMeal);
+    }
+  });
+
+  localStorage.setItem('menu', JSON.stringify(mergedMenu)); // Update localStorage
+  return mergedMenu;
+}
+
+// Global Menu Variable
+let menu = loadMenu();
 
 // Function to Save Menu to localStorage
 function saveMenuToLocalStorage() {
@@ -71,11 +122,12 @@ function renderMenu() {
   });
 }
 
-// Function to Update an Item's Details
 function updateItem(mealIndex, itemIndex, field, value) {
-  menu[mealIndex].items[itemIndex][field] = value; // Update field
-  saveMenuToLocalStorage(); // Save updated menu
+  menu[mealIndex].items[itemIndex][field] = value; // Update field in memory
+  saveMenuToLocalStorage(); // Save updated menu to localStorage
+  renderMenu(); // Re-render menu to reflect changes
 }
+
 
 // Function to Add a New Meal
 function addNewMeal() {
