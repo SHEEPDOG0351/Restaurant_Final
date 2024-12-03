@@ -1,4 +1,5 @@
 // Function to load the menu data from localStorage (if any) or use the default menu
+import { menu } from './managerIndex.js';
 function loadMenu() {
   const savedMenu = localStorage.getItem('menu');
   return savedMenu ? JSON.parse(savedMenu) : menu; // Fallback to default menu if no data in localStorage

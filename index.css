@@ -171,7 +171,7 @@ nav.scrolled a:hover {
 
 /* Individual Meal Styling */
 .meal {
-    background-color: #fff;
+    background-color: black;
     width: 300px; /* Fixed width for each meal */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -179,6 +179,7 @@ nav.scrolled a:hover {
     padding: 20px;
     text-align: center;
     transition: transform 0.3s ease-in-out;
+    color: white;
 }
 
 .meal:hover {
@@ -197,7 +198,7 @@ nav.scrolled a:hover {
 .meal-title {
     font-size: 1.5em;
     font-weight: bold;
-    color: #333;
+    color: white;
     margin-top: 15px;
     margin-bottom: 10px;
 }
@@ -206,7 +207,7 @@ nav.scrolled a:hover {
 .meal-item-name {
     font-size: 1.1em;
     font-weight: bold;
-    color: #555;
+    color: white;
     margin: 10px 0;
 }
 
