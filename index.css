@@ -395,6 +395,63 @@ nav.scrolled a:hover {
     margin-right: 25px;
 }
 
+/* Style the purchase container */
+.purchase-container {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  /* Style for the tip input */
+  #tip-input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  /* Style the payment options */
+  .payment-options {
+    margin-bottom: 15px;
+  }
+  
+  .payment-options p {
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .payment-options input[type="radio"] {
+    margin-right: 5px;
+  }
+  
+  .payment-options label {
+    margin-right: 20px;
+    font-size: 16px;
+  }
+  
+  /* Style for the "Purchase" button */
+  .purchase-container .btn {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .purchase-container .btn:hover {
+    background-color: #0056b3;
+  }
+
 /*Styling for reviews section*/
 .reviews-main {
     background: linear-gradient(180deg, rgb(43, 43, 43), rgb(13, 13, 13));
@@ -662,6 +719,43 @@ nav.scrolled a:hover {
     padding: .67em .67em;
     cursor: pointer;
 }
+
+/* General button styling for remove button */
+.btn-remove {
+    background-color: #e74c3c; /* Red color for remove action */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 10px; /* Adds space between text and button */
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Hover effect for remove button */
+  .btn-remove:hover {
+    background-color: #c0392b; /* Darker red for hover */
+  }
+  
+  /* Active state for remove button */
+  .btn-remove:active {
+    background-color: #a93226; /* Even darker red when clicked */
+    transform: scale(0.95); /* Slightly shrink button on click */
+  }
+  
+  /* Ensure the button is aligned nicely with cart content */
+  .cart-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+  }
+  
+  .cart-item, .cart-price, .cart-quantity {
+    margin-right: 5px; /* Space between elements */
+  }
+
 
 /* Styling for the cart quantity input box */
 .cart-quantity-input {

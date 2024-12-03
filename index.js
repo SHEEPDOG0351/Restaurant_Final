@@ -6,16 +6,16 @@ function loadMenu() {
 }
 
 const nav = document.querySelector("nav");
-    window.addEventListener("scroll", function () {
-        const navHeight = nav.offsetHeight;
-        if (window.scrollY > navHeight) {
-            nav.classList.add("scrolled");
-            console.log("Scrolled class added");
-        } else {
-            nav.classList.remove("scrolled");
-            console.log("Scrolled class removed");
-        }
-  });
+window.addEventListener("scroll", function () {
+  const navHeight = nav.offsetHeight;
+  if (window.scrollY > navHeight) {
+    nav.classList.add("scrolled");
+    console.log("Scrolled class added");
+  } else {
+    nav.classList.remove("scrolled");
+    console.log("Scrolled class removed");
+  }
+});
 
 // Dynamically render the menu with meals and items
 function renderMenu() {
@@ -56,7 +56,6 @@ function renderMenu() {
   });
 }
 
-
 // Save updated menu to localStorage (for manager integration)
 function saveMenu(menuData) {
   localStorage.setItem('menu', JSON.stringify(menuData));
@@ -85,19 +84,19 @@ function addToOrder(mealName, totalPrice) {
 function updateCartDisplay() {
   const cartItemsContainer = document.querySelector('.cart-items');
   const cartTotalPrice = document.querySelector('.cart-total-price');
-
-  // Clear the cart display
-  cartItemsContainer.innerHTML = '';
   let total = 0;
 
+  cartItemsContainer.innerHTML = ''; // Clear the cart display
+
   // Loop through cart items and display them
-  cart.forEach(item => {
+  cart.forEach((item, index) => {
     const cartItem = document.createElement('div');
     cartItem.classList.add('cart-row');
     cartItem.innerHTML = `
       <span class="cart-item">${item.mealName}</span>
       <span class="cart-price">$${item.totalPrice.toFixed(2)}</span>
-      <span class="cart-quantity">${item.quantity}</span>
+      <span class="cart-quantity">Quantity: ${item.quantity}</span>
+      <button class="btn btn-danger btn-remove" onclick="removeFromOrder(${index})">Remove</button>
     `;
     cartItemsContainer.appendChild(cartItem);
     total += item.totalPrice * item.quantity;
@@ -105,6 +104,16 @@ function updateCartDisplay() {
 
   // Update the total price
   cartTotalPrice.innerText = `$${total.toFixed(2)}`;
+}
+
+// Function to remove an item from the order
+function removeFromOrder(index) {
+  if (cart[index].quantity > 1) {
+    cart[index].quantity--; // Decrease quantity by 1
+  } else {
+    cart.splice(index, 1); // Remove the item if quantity is 1
+  }
+  updateCartDisplay(); // Update the cart display
 }
 
 // Function to handle the purchase button click
@@ -126,11 +135,16 @@ function purchaseClicked() {
     return;
   }
 
+  const tipInput = document.getElementById('tip-input').value || 0;
+  const selectedPaymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+
   const orderDetails = cart.map(item => `${item.quantity} x ${item.mealName} - $${(item.totalPrice * item.quantity).toFixed(2)}`).join('\n');
-  const totalAmount = cart.reduce((total, item) => total + item.totalPrice * item.quantity, 0).toFixed(2);
+  const totalAmount = cart.reduce((total, item) => total + item.totalPrice * item.quantity, 0) + parseFloat(tipInput);
 
-  alert(`Your Order:\n${orderDetails}\n\nTotal: $${totalAmount}`);
-
+  // Retrieve the username/email from localStorage
+  const email = localStorage.getItem('loggedInEmail');
+  alert(`Your Order:\n${orderDetails}\n\nTip: $${parseFloat(tipInput).toFixed(2)}\nPayment Method: ${selectedPaymentMethod}\nTotal: $${totalAmount.toFixed(2)}\n\nOrder placed by: ${email}`);
+  
   // Reset the cart
   cart = [];
   updateCartDisplay();
