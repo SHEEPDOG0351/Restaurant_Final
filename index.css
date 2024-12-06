@@ -473,8 +473,8 @@ nav.scrolled a:hover {
 
 .reviews-body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    flex-direction: row-reverse;
     margin: 0 auto;
     width: 85%;
 }
@@ -487,6 +487,7 @@ nav.scrolled a:hover {
 .star-rating {
     display: flex;
     flex-direction: row-reverse;
+    justify-content: center;
 }
 
 .star-rating .fa-star {
@@ -540,7 +541,7 @@ nav.scrolled a:hover {
 .review-input-body button {
     width: 20%;
     margin: 0 auto;
-    margin-top: 20px;
+    margin-top: 30px;
     margin-bottom: 20px;
     padding: 20px 10px;
     font-size: 25px;
@@ -565,7 +566,7 @@ nav.scrolled a:hover {
     padding-top: 20px;
     background-color: black;
     margin-top: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 #review-divider {
@@ -579,6 +580,21 @@ nav.scrolled a:hover {
     margin-bottom: 10px;
     text-align: center;
 }
+
+.review-name {
+    font-weight: 700;
+    font-size: 30px;
+    color: white;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .review-rating {
+    text-align: center;
+    font-size: 25px;
+    color: gold;
+    padding-bottom: 10px;
+  }
 
 #rating {
     text-align: center;
@@ -600,6 +616,13 @@ nav.scrolled a:hover {
     font-weight: 200;
     font-family: 'Cormorant', Arial;
     overflow-wrap: break-word;
+}
+
+.review-date {
+    text-align: center;
+    font-size: 15px;
+    color: gray;
+    margin-top: 10px;
 }
 
 .review-button-container {

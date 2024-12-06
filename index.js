@@ -1,8 +1,8 @@
 // Function to load the menu data from localStorage (if any) or use the default menu
-import { menu } from './managerIndex.js';
+import { defaultMenu } from './managerIndex.js';
 function loadMenu() {
   const savedMenu = localStorage.getItem('menu');
-  return savedMenu ? JSON.parse(savedMenu) : menu; // Fallback to default menu if no data in localStorage
+  return savedMenu ? JSON.parse(savedMenu) : defaultMenu; // Fallback to default menu if no data in localStorage
 }
 
 const nav = document.querySelector("nav");
@@ -166,17 +166,18 @@ function saveReview(name, rating, description) {
 
 function renderReviews() {
   const reviewsData = loadReviews();
-  const reviewsContainer = document.querySelector('.reviews-body');
-  reviewsContainer.innerHTML = '';
+  const reviewsContainer = document.getElementById('reviews-list'); // Updated ID
+  reviewsContainer.innerHTML = ''; // Clear existing reviews
 
   reviewsData.forEach(review => {
     const reviewElement = document.createElement('div');
-    reviewElement.classList.add('review');
+    reviewElement.classList.add('review', 'review-entry'); // Apply relevant classes
 
+    // Create review HTML with consistent structure
     let reviewHTML = `
       <p class="review-name">${review.name}</p>
-      <p class="review-rating">Rating: ${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</p>
-      <p class="review-description">${review.description}</p>
+      <p id="rating" class="review-rating">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</p>
+      <p id="review-description" class="review-description">${review.description}</p>
       <p class="review-date">${review.date}</p>
     `;
 
@@ -185,34 +186,55 @@ function renderReviews() {
   });
 }
 
+window.handleReviewSubmission = handleReviewSubmission;
+
 function handleReviewSubmission() {
+  console.log("handleReviewSubmission triggered");
+
   const nameInput = document.getElementById('full');
-  const descriptionInput = document.querySelector('.review-input-body input[type="text"]');
+  const descriptionInput = document.getElementById('review-description');
+
+  if (!nameInput || !descriptionInput) {
+    console.error("Input elements not found");
+    return;
+  }
 
   const name = nameInput.value.trim();
   const description = descriptionInput.value.trim();
+  console.log({ name, description });
 
-  const rating = Array.from(document.querySelectorAll('.star-rating i')).filter(star => star.classList.contains('selected')).length;
-
-  if (!name || !description || rating === 0) {
+  if (currentRating === 0) {
     alert('Please fill in all fields before submitting your review.');
     return;
   }
 
-  saveReview(name, rating, description);
+  console.log({ rating: currentRating }); // Debug log to confirm rating
+
+  saveReview(name, currentRating, description);
   renderReviews();
+
   nameInput.value = '';
   descriptionInput.value = '';
+  setRating(0); // Reset the stars
+  currentRating = 0; // Reset the global rating variable
+
   alert('Thank you for your review!');
 }
 
+
+let currentRating = 0
+
 // Rating system functionality
 function setRating(rating) {
+  currentRating = rating; // Update the global variable
   const stars = document.querySelectorAll('.star-rating i');
   stars.forEach((star, index) => {
-    star.classList.toggle('selected', index < rating);
+    // Add the "filled" class to all stars before and including the clicked star
+    star.classList.toggle('filled', index < rating);
   });
 }
+
+window.setRating = setRating
 
 // Initialize the page with the menu and reviews
 window.onload = () => {
