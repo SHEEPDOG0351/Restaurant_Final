@@ -1,5 +1,5 @@
 // Initial Default Menu Data
-const defaultMenu = [
+export const defaultMenu = [
   {
     meal: "Grilled Salmon Meal", totalPrice: 36.97,
     items: [
@@ -50,7 +50,7 @@ const defaultMenu = [
   }
 ];
 
-// Function to Merge Default Menu with Stored Menu
+// Function to Load Menu Data
 function loadMenu() {
   const storedMenu = JSON.parse(localStorage.getItem('menu')) || [];
   const mergedMenu = [...storedMenu];
@@ -67,105 +67,62 @@ function loadMenu() {
 }
 
 // Global Menu Variable
-let menu = loadMenu();
+export let menu = loadMenu();
 
-// Function to Save Menu to localStorage
+// Save Menu to LocalStorage
 function saveMenuToLocalStorage() {
-  localStorage.setItem('menu', JSON.stringify(menu)); // Save the current menu to localStorage
+  localStorage.setItem('menu', JSON.stringify(menu));
 }
 
-// Function to Recalculate Total Price of a Meal
-function recalculateTotalPrice(mealIndex) {
-  const meal = menu[mealIndex];
-  const totalPrice = meal.items.reduce((sum, item) => sum + parseFloat(item.price), 0);
-  meal.totalPrice = totalPrice;
-  saveMenuToLocalStorage(); // Save after recalculating
-  renderMenu(); // Re-render the menu
-}
-
-// Function to Render the Menu on the Page
+// Render the Menu
 function renderMenu() {
   const menuContainer = document.getElementById('menu-container');
-  menuContainer.innerHTML = ''; // Clear previous content
+  if (!menuContainer) return; // Avoid errors if the container doesn't exist
 
-  menu.forEach((meal, mealIndex) => {
+  menuContainer.innerHTML = ''; // Clear previous content
+  menu.forEach(meal => {
     const mealElement = document.createElement('div');
     mealElement.classList.add('meal');
 
-    const totalPrice = (typeof meal.totalPrice === 'number' && !isNaN(meal.totalPrice)) ? meal.totalPrice : 0;
-
-    let mealHTML = `
-      <h3 class="meal-title">${meal.meal} - $${totalPrice.toFixed(2)}</h3>
+    mealElement.innerHTML = `
+      <h3 class="meal-title">${meal.meal} - $${meal.totalPrice.toFixed(2)}</h3>
       <div class="meal-items">
+        ${meal.items.map(item => `
+          <div class="meal-item">
+            <img src="${item.image}" alt="${item.name}">
+            <p>${item.name}: $${item.price.toFixed(2)}</p>
+          </div>
+        `).join('')}
+      </div>
     `;
-
-    // Render each item in the meal
-    meal.items.forEach((item, itemIndex) => {
-      mealHTML += `
-        <div class="meal-item">
-          <img src="${item.image}" alt="${item.name}" class="meal-item-image">
-          <input type="text" class="meal-item-name" value="${item.name}" onchange="updateItem(${mealIndex}, ${itemIndex}, 'name', this.value)">
-          <textarea class="meal-item-description" onchange="updateItem(${mealIndex}, ${itemIndex}, 'description', this.value)">${item.description}</textarea>
-          <input type="number" class="meal-item-price" value="${item.price}" onchange="updateItem(${mealIndex}, ${itemIndex}, 'price', parseFloat(this.value)); recalculateTotalPrice(${mealIndex})">
-          <input type="text" class="meal-item-image-url" value="${item.image}" onchange="updateItem(${mealIndex}, ${itemIndex}, 'image', this.value)">
-        </div>
-      `;
-    });
-
-    mealHTML += `
-        </div>
-        <button class="btn btn-danger delete-meal" onclick="deleteMeal(${mealIndex})">Delete Meal</button>
-    `;
-
-    mealElement.innerHTML = mealHTML;
     menuContainer.appendChild(mealElement);
   });
 }
 
-function updateItem(mealIndex, itemIndex, field, value) {
-  menu[mealIndex].items[itemIndex][field] = value; // Update field in memory
-  saveMenuToLocalStorage(); // Save updated menu to localStorage
-  renderMenu(); // Re-render menu to reflect changes
-}
-
-// Ensure this script only runs on the manager.html page
-document.addEventListener('DOMContentLoaded', () => {
-  const currentPage = window.location.pathname.split('/').pop(); // Get the file name from the URL
-  if (currentPage === 'manager.html') {
-    // Your managerIndex.js logic goes here
-    initializeManagerPage();
-  }
-});
-
-// Function to initialize all logic specific to manager.html
+// Initialize Manager Page
 function initializeManagerPage() {
-  // Attach event listener to the "Add Meal" button
   const addMealButton = document.getElementById('add-meal-btn');
   if (addMealButton) {
     addMealButton.addEventListener('click', addNewMeal);
   }
-
-  // Render the menu on page load
-  renderMenu();
+  renderMenu(); // Render the menu
 }
 
-// Function to Add a New Meal
+// Add a New Meal
 function addNewMeal() {
   const mainDishName = prompt("Enter the main dish name:");
   const mainDishDescription = prompt("Enter the main dish description:");
   const mainDishPrice = parseFloat(prompt("Enter the main dish price:"));
   const mainDishImage = prompt("Enter the main dish image URL:");
-
   const sideDishName = prompt("Enter the side dish name:");
   const sideDishDescription = prompt("Enter the side dish description:");
   const sideDishPrice = parseFloat(prompt("Enter the side dish price:"));
   const sideDishImage = prompt("Enter the side dish image URL:");
-
   const drinkName = prompt("Enter the drink name:");
   const drinkDescription = prompt("Enter the drink description:");
   const drinkPrice = parseFloat(prompt("Enter the drink price:"));
   const drinkImage = prompt("Enter the drink image URL:");
-
+  
   const newMeal = {
     meal: mainDishName + " Meal",
     totalPrice: mainDishPrice + sideDishPrice + drinkPrice,
@@ -181,7 +138,7 @@ function addNewMeal() {
   renderMenu();
 }
 
-// Function to Delete a Meal
+// Delete a Meal
 function deleteMeal(mealIndex) {
   if (confirm("Are you sure you want to delete this meal?")) {
     menu.splice(mealIndex, 1); // Remove the meal
@@ -190,8 +147,12 @@ function deleteMeal(mealIndex) {
   }
 }
 
-// Event Listener for "Add Meal" Button
-document.getElementById('add-meal-btn').addEventListener('click', addNewMeal);
-
-// Render Menu on Page Load
-window.onload = renderMenu;
+// Run Page-Specific Logic
+document.addEventListener('DOMContentLoaded', () => {
+  const currentPage = window.location.pathname.split('/').pop();
+  if (currentPage === 'manager.html') {
+    initializeManagerPage();
+  } else if (currentPage === 'index.html') {
+    renderMenu();
+  }
+});
