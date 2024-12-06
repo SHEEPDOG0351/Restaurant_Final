@@ -16,7 +16,38 @@ export const defaultMenu = [
       { name: "Craft Beer", description: "A cold, refreshing craft beer that pairs well with a burger.", price: 5.99, image: "https://catalogue.novascotia.com/ManagedMedia/25567.jpg" }
     ]
   },
-  // Additional meals here...
+  {
+    meal: "Spaghetti Carbonara Meal", totalPrice: 25.97,
+    items: [
+      { name: "Spaghetti Carbonara", description: "Classic Italian pasta dish with creamy sauce and pancetta.", price: 14.99, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNgv8zb9YYjo6K9Zx_Fh2VuK14OQkPHgu5PQ&s" },
+      { name: "Garlic Bread", description: "Crunchy garlic bread with butter and herbs.", price: 5.99, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNgv8zb9YYjo6K9Zx_Fh2VuK14OQkPHgu5PQ&s" },
+      { name: "Red Wine", description: "Full-bodied red wine to complement the pasta.", price: 4.99, image: "https://media02.stockfood.com/largepreviews/MTg2MTAyMDA1NQ==/60032905-Pouring-red-wine-into-glass.jpg" },
+    ]
+  },
+  {
+    meal: "Fried Chicken Meal", totalPrice: 27.97,
+    items: [
+      { name: "Fried Chicken", description: "Crispy, golden fried chicken.", price: 12.99, image: "https://instantpotcooking.com/wp-content/uploads/2023/06/Instant-Pot-Fried-Chicken.jpg" },
+      { name: "Mashed Potatoes", description: "Creamy mashed potatoes with gravy.", price: 6.99, image: "https://www.allrecipes.com/thmb/ytnCq3jVoAyGzGxm_oZxqGI-HCU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/18290-garlic-mashed-potatoes-ddmfs-beauty2-4x3-0327-2-47384a10cded40ae90e574bc7fdb9433.jpg" },
+      { name: "Iced Tea", description: "Chilled iced tea to refresh your palate.", price: 7.99, image: "https://media.gettyimages.com/id/564207263/photo/iced-tea.jpg?s=612x612&w=gi&k=20&c=zTdpyQNU72WDuTRTitdXsGcsjJhMAWEFWKUSr7D9SmI=" }
+    ]
+  },
+  {
+    meal: "Vegan Buddha Bowl", totalPrice: 24.99,
+    items: [
+      { name: "Quinoa Bowl", description: "Packed with fresh veggies, avocado, and tofu.", price: 15.99, image: "" },
+      { name: "Hummus Plate", description: "Creamy hummus with pita bread.", price: 5.99, image: "https://cosetteskitchen.com/wp-content/uploads/2024/04/mediterranean-quinoa-bowl_final_topview_quinoabowl.jpg" },
+      { name: "Green Smoothie", description: "A nutrient-rich green smoothie.", price: 3.99, image: "https://i1.wp.com/happymoneysaver.com/wp-content/uploads/2013/11/33021383_ml.jpg" }
+    ]
+  },
+  {
+    meal: "BBQ Ribs Meal", totalPrice: 34.99,
+    items: [
+      { name: "BBQ Ribs", description: "Tender ribs with smoky BBQ sauce.", price: 17.99, image: "https://thatovenfeelin.com/wp-content/uploads/2024/08/Slow-Cooker-Root-Beer-BBQ-Pork-Ribs-1.png" },
+      { name: "Coleslaw", description: "Crispy coleslaw with a tangy dressing.", price: 6.99, image: "https://kitchenfunwithmy3sons.com/wp-content/uploads/2021/06/KFC-Coleslaw-feature-scaled.jpg" },
+      { name: "Lemonade", description: "Freshly squeezed lemonade.", price: 9.99, image: "https://img.freepik.com/premium-photo/lemonade-being-poured-from-jug-into-glass_1170794-181832.jpg" }
+    ]
+  }
 ];
 
 // Function to Load Menu Data

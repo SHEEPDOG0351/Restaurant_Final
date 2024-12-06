@@ -221,7 +221,6 @@ function handleReviewSubmission() {
   alert('Thank you for your review!');
 }
 
-
 let currentRating = 0
 
 // Rating system functionality
