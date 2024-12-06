@@ -21,7 +21,7 @@ const defaultMenu = [
     items: [
       { name: "Spaghetti Carbonara", description: "Classic Italian pasta dish with creamy sauce and pancetta.", price: 14.99, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNgv8zb9YYjo6K9Zx_Fh2VuK14OQkPHgu5PQ&s" },
       { name: "Garlic Bread", description: "Crunchy garlic bread with butter and herbs.", price: 5.99, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNgv8zb9YYjo6K9Zx_Fh2VuK14OQkPHgu5PQ&s" },
-      { name: "Red Wine", description: "Full-bodied red wine to complement the pasta.", price: 4.99, image: https://media02.stockfood.com/largepreviews/MTg2MTAyMDA1NQ==/60032905-Pouring-red-wine-into-glass.jpg" }
+      { name: "Red Wine", description: "Full-bodied red wine to complement the pasta.", price: 4.99, image: "https://media02.stockfood.com/largepreviews/MTg2MTAyMDA1NQ==/60032905-Pouring-red-wine-into-glass.jpg" },
     ]
   },
   {
