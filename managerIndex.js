@@ -125,33 +125,33 @@ export let defaultMenu = JSON.parse(localStorage.getItem('menu')) || [
   {
     meal: "Spaghetti Carbonara Meal", totalPrice: 25.97,
     items: [
-      { name: "Spaghetti Carbonara", description: "Classic Italian pasta dish with creamy sauce and pancetta.", price: 14.99, image: "https://www.errenskitchen.com/wp-content/uploads/2021/04/Spaghetti-Carbonara-SQUARE.jpg" },
-      { name: "Garlic Bread", description: "Crunchy garlic bread with butter and herbs.", price: 5.99, image: "https://feelgoodfoodie.net/wp-content/uploads/2021/02/Air-Fryer-Garlic-Bread-6.jpg" },
-      { name: "Red Wine", description: "Full-bodied red wine to complement the pasta.", price: 4.99, image: "https://www.wine-searcher.com/images/wine_style/red-rich-and-intense-8-1-2.jpg?width=734" }
+      { name: "Spaghetti Carbonara", description: "Classic Italian pasta dish with creamy sauce and pancetta.", price: 14.99, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNgv8zb9YYjo6K9Zx_Fh2VuK14OQkPHgu5PQ&s" },
+      { name: "Garlic Bread", description: "Crunchy garlic bread with butter and herbs.", price: 5.99, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNgv8zb9YYjo6K9Zx_Fh2VuK14OQkPHgu5PQ&s" },
+      { name: "Red Wine", description: "Full-bodied red wine to complement the pasta.", price: 4.99, image: https://media02.stockfood.com/largepreviews/MTg2MTAyMDA1NQ==/60032905-Pouring-red-wine-into-glass.jpg" }
     ]
   },
   {
     meal: "Fried Chicken Meal", totalPrice: 27.97,
     items: [
-      { name: "Fried Chicken", description: "Crispy, golden fried chicken.", price: 12.99, image: "https://www.simplyrecipes.com/thmb/tZnpg_1VgUQuhGnTL8xZy3Ff6xU=/3000x2000/filters:fill(auto,1)/Simply-Recipes-Crispy-Fried-Chicken-LEAD-2-6797ef3ab623404cbec6b3230240b4b7.jpg" },
-      { name: "Mashed Potatoes", description: "Creamy mashed potatoes with gravy.", price: 6.99, image: "https://www.simplyrecipes.com/thmb/1TPu4SxVtLtTRs6A0f8o2ICvsiw=/2000x1333/filters:fill(auto,1)/Simply-Recipes-Mashed-Potatoes-LEAD-1-b11cf48b67f54b379f0e610b5325c4b0.jpg" },
-      { name: "Iced Tea", description: "Chilled iced tea to refresh your palate.", price: 7.99, image: "https://images.unsplash.com/photo-1597846848080-d2b2f4ffbac0" }
+      { name: "Fried Chicken", description: "Crispy, golden fried chicken.", price: 12.99, image: "https://instantpotcooking.com/wp-content/uploads/2023/06/Instant-Pot-Fried-Chicken.jpg" },
+      { name: "Mashed Potatoes", description: "Creamy mashed potatoes with gravy.", price: 6.99, image: "https://www.allrecipes.com/thmb/ytnCq3jVoAyGzGxm_oZxqGI-HCU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/18290-garlic-mashed-potatoes-ddmfs-beauty2-4x3-0327-2-47384a10cded40ae90e574bc7fdb9433.jpg" },
+      { name: "Iced Tea", description: "Chilled iced tea to refresh your palate.", price: 7.99, image: "https://media.gettyimages.com/id/564207263/photo/iced-tea.jpg?s=612x612&w=gi&k=20&c=zTdpyQNU72WDuTRTitdXsGcsjJhMAWEFWKUSr7D9SmI=" }
     ]
   },
   {
     meal: "Vegan Buddha Bowl", totalPrice: 24.99,
     items: [
-      { name: "Quinoa Bowl", description: "Packed with fresh veggies, avocado, and tofu.", price: 15.99, image: "https://minimalistbaker.com/wp-content/uploads/2021/02/Easy-Quinoa-Buddha-Bowls-SQUARE.jpg" },
-      { name: "Hummus Plate", description: "Creamy hummus with pita bread.", price: 5.99, image: "https://www.simplyrecipes.com/thmb/NtSPiGoD9F0rH3c6L-py9xS9RpQ=/2000x1333/filters:fill(auto,1)/Simply-Recipes-Hummus-LEAD-01-470fa5a6b4f6440d8c6d7f840d2497eb.jpg" },
-      { name: "Green Smoothie", description: "A nutrient-rich green smoothie.", price: 3.99, image: "https://images.unsplash.com/photo-1561043433-aaf687c4cf4e" }
+      { name: "Quinoa Bowl", description: "Packed with fresh veggies, avocado, and tofu.", price: 15.99, image: "" },
+      { name: "Hummus Plate", description: "Creamy hummus with pita bread.", price: 5.99, image: "https://cosetteskitchen.com/wp-content/uploads/2024/04/mediterranean-quinoa-bowl_final_topview_quinoabowl.jpg" },
+      { name: "Green Smoothie", description: "A nutrient-rich green smoothie.", price: 3.99, image: "https://i1.wp.com/happymoneysaver.com/wp-content/uploads/2013/11/33021383_ml.jpg" }
     ]
   },
   {
     meal: "BBQ Ribs Meal", totalPrice: 34.99,
     items: [
-      { name: "BBQ Ribs", description: "Tender ribs with smoky BBQ sauce.", price: 17.99, image: "https://www.simplyrecipes.com/thmb/xF7d-4VrYKnV5RSjGQgPAWhXmoU=/2000x1500/filters:fill(auto,1)/Simply-Recipes-BBQ-Ribs-LEAD-1-5ddbb6575df947ec87c0d29a7740f8ae.jpg" },
-      { name: "Coleslaw", description: "Crispy coleslaw with a tangy dressing.", price: 6.99, image: "https://www.simplyrecipes.com/thmb/WZ6Q_2To7R9R3yNrA_n6K9QjX0A=/2000x1333/filters:fill(auto,1)/Simply-Recipes-Coleslaw-LEAD-3-4b95a5d8af39433a90241d66cb872b21.jpg" },
-      { name: "Lemonade", description: "Freshly squeezed lemonade.", price: 9.99, image: "https://images.unsplash.com/photo-1504615755583-2916b52192d3" }
+      { name: "BBQ Ribs", description: "Tender ribs with smoky BBQ sauce.", price: 17.99, image: "https://thatovenfeelin.com/wp-content/uploads/2024/08/Slow-Cooker-Root-Beer-BBQ-Pork-Ribs-1.png" },
+      { name: "Coleslaw", description: "Crispy coleslaw with a tangy dressing.", price: 6.99, image: "https://kitchenfunwithmy3sons.com/wp-content/uploads/2021/06/KFC-Coleslaw-feature-scaled.jpg" },
+      { name: "Lemonade", description: "Freshly squeezed lemonade.", price: 9.99, image: "https://img.freepik.com/premium-photo/lemonade-being-poured-from-jug-into-glass_1170794-181832.jpg" }
     ]
   }
 ];
@@ -233,6 +233,26 @@ function updateItem(mealIndex, itemIndex, field, value) {
   renderMenu(); // Re-render menu to reflect changes
 }
 
+// Ensure this script only runs on the manager.html page
+document.addEventListener('DOMContentLoaded', () => {
+  const currentPage = window.location.pathname.split('/').pop(); // Get the file name from the URL
+  if (currentPage === 'manager.html') {
+    // Your managerIndex.js logic goes here
+    initializeManagerPage();
+  }
+});
+
+// Function to initialize all logic specific to manager.html
+function initializeManagerPage() {
+  // Attach event listener to the "Add Meal" button
+  const addMealButton = document.getElementById('add-meal-btn');
+  if (addMealButton) {
+    addMealButton.addEventListener('click', addNewMeal);
+  }
+
+  // Render the menu on page load
+  renderMenu();
+}
 
 // Function to Add a New Meal
 function addNewMeal() {
