@@ -673,6 +673,7 @@ nav.scrolled a:hover {
 
 .cart-item {
     width: 45%;
+    color: white;
 }
 
 /* Flexbox layout for each cart column (e.g., item name, price, etc.) */
@@ -699,6 +700,7 @@ nav.scrolled a:hover {
 
 .cart-quantity {
     width: 35%;
+    color: white;
 }
 
 /* Container for the cart total section */
@@ -706,6 +708,7 @@ nav.scrolled a:hover {
     text-align: end;
     margin-top: 10px;
     margin-right: 10px;
+    color: white;
 }
 
 .cart-total-title {
