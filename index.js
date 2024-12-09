@@ -1,9 +1,3 @@
-// Function to load the menu data from localStorage (if any) or use the default menu
-import { defaultMenu } from './managerIndex.js';
-function loadMenu() {
-  const savedMenu = localStorage.getItem('menu');
-  return savedMenu ? JSON.parse(savedMenu) : defaultMenu; // Fallback to default menu if no data in localStorage
-}
 
 const nav = document.querySelector("nav");
 window.addEventListener("scroll", function () {
@@ -17,15 +11,15 @@ window.addEventListener("scroll", function () {
   }
 });
 
-// Dynamically render the menu with meals and items
 function renderMenu() {
-  const menuData = loadMenu(); // Load the menu (from localStorage or default)
-  const menuContainer = document.getElementById('menu-container');
-  menuContainer.innerHTML = ''; // Clear existing menu before rendering
+  const menuContainer = document.getElementById('menu-container'); // Get the menu container
+  const menuData = JSON.parse(localStorage.getItem('menu')) || []; // Retrieve menu data from local storage
+
+  menuContainer.innerHTML = ''; // Clear any existing content in the menu container
 
   menuData.forEach(meal => {
     const mealElement = document.createElement('div');
-    mealElement.classList.add('meal');
+    mealElement.classList.add('meal'); // Add class for styling
 
     // Add meal title and total price
     let mealHTML = `
@@ -51,15 +45,11 @@ function renderMenu() {
       <button class="btn btn-primary add-to-order" onclick="addToOrder('${meal.meal}', ${meal.totalPrice})">Add to Order</button>
     `;
 
-    mealElement.innerHTML = mealHTML;
-    menuContainer.appendChild(mealElement);
+    mealElement.innerHTML = mealHTML; // Set the generated HTML
+    menuContainer.appendChild(mealElement); // Append the meal to the container
   });
 }
 
-// Save updated menu to localStorage (for manager integration)
-function saveMenu(menuData) {
-  localStorage.setItem('menu', JSON.stringify(menuData));
-}
 
 // Function to handle adding items to the cart
 let cart = [];
@@ -79,6 +69,8 @@ function addToOrder(mealName, totalPrice) {
 
   updateCartDisplay();
 }
+
+window.addToOrder = addToOrder; // Attach the function to window
 
 // Function to update the cart display
 function updateCartDisplay() {
@@ -116,6 +108,8 @@ function removeFromOrder(index) {
   updateCartDisplay(); // Update the cart display
 }
 
+window.removeFromOrder = removeFromOrder;
+
 // Function to handle the purchase button click
 function handlePurchaseClicked() {
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
@@ -127,6 +121,8 @@ function handlePurchaseClicked() {
 
   purchaseClicked();
 }
+
+window.handlePurchaseClicked = handlePurchaseClicked;
 
 // Function to handle purchases
 function purchaseClicked() {
@@ -220,7 +216,6 @@ function handleReviewSubmission() {
 
   alert('Thank you for your review!');
 }
-
 
 let currentRating = 0
 
