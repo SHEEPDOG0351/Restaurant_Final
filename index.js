@@ -151,42 +151,59 @@ let reviews = [];
 
 function loadReviews() {
   const savedReviews = localStorage.getItem('reviews');
-  return savedReviews ? JSON.parse(savedReviews) : reviews;
+  return savedReviews ? JSON.parse(savedReviews) : [];
 }
 
 function saveReview(name, rating, description) {
-  const newReview = { name, rating, description, date: new Date().toLocaleString() };
-  reviews.push(newReview);
-  localStorage.setItem('reviews', JSON.stringify(reviews));
+  // Load existing reviews from localStorage
+  const existingReviews = JSON.parse(localStorage.getItem('reviews')) || [];
+  
+  // Create a new review object
+  const newReview = { 
+    name, 
+    rating, 
+    description, 
+    date: new Date().toLocaleString() 
+  };
+
+  // Append the new review to the existing array
+  existingReviews.push(newReview);
+
+  // Save updated array back to localStorage
+  localStorage.setItem('reviews', JSON.stringify(existingReviews));
 }
+
 
 function renderReviews() {
-  const reviewsData = loadReviews();
-  const reviewsContainer = document.getElementById('reviews-list'); // Updated ID
-  reviewsContainer.innerHTML = ''; // Clear existing reviews
+  const reviewsData = loadReviews(); // Load saved reviews
+  const reviewsContainer = document.getElementById('reviews-list');
+  reviewsContainer.innerHTML = ''; // Clear the existing content
 
-  reviewsData.forEach(review => {
-    const reviewElement = document.createElement('div');
-    reviewElement.classList.add('review', 'review-entry'); // Apply relevant classes
+  if (reviewsData && reviewsData.length) {
+    reviewsData.forEach(review => {
+      const reviewElement = document.createElement('div');
+      reviewElement.classList.add('review', 'review-entry');
 
-    // Create review HTML with consistent structure
-    let reviewHTML = `
-      <p class="review-name">${review.name}</p>
-      <p id="rating" class="review-rating">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</p>
-      <p id="review-description" class="review-description">${review.description}</p>
-      <p class="review-date">${review.date}</p>
-    `;
+      // Construct review HTML
+      const reviewHTML = `
+        <p class="review-name">${review.name}</p>
+        <p id="rating" class="review-rating">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</p>
+        <p id="review-description" class="review-description">${review.description}</p>
+        <p class="review-date">${review.date}</p>
+      `;
 
-    reviewElement.innerHTML = reviewHTML;
-    reviewsContainer.appendChild(reviewElement);
-  });
+      reviewElement.innerHTML = reviewHTML; // Assign the constructed HTML
+      reviewsContainer.appendChild(reviewElement); // Add to container
+    });
+  } else {
+    reviewsContainer.innerHTML = '<p>No reviews yet. Be the first to leave a review!</p>';
+  }
 }
+
 
 window.handleReviewSubmission = handleReviewSubmission;
 
 function handleReviewSubmission() {
-  console.log("handleReviewSubmission triggered");
-
   const nameInput = document.getElementById('full');
   const descriptionInput = document.getElementById('review-description');
 
@@ -197,25 +214,25 @@ function handleReviewSubmission() {
 
   const name = nameInput.value.trim();
   const description = descriptionInput.value.trim();
-  console.log({ name, description });
 
-  if (currentRating === 0) {
-    alert('Please fill in all fields before submitting your review.');
+  if (!name || !description || currentRating === 0) {
+    alert('Please fill in all fields and provide a rating before submitting your review.');
     return;
   }
 
-  console.log({ rating: currentRating }); // Debug log to confirm rating
-
+  // Save the review and re-render
   saveReview(name, currentRating, description);
   renderReviews();
 
+  // Reset input fields
   nameInput.value = '';
   descriptionInput.value = '';
-  setRating(0); // Reset the stars
-  currentRating = 0; // Reset the global rating variable
+  setRating(0); // Reset star rating
+  currentRating = 0;
 
   alert('Thank you for your review!');
 }
+
 
 let currentRating = 0
 
