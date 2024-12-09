@@ -1,4 +1,5 @@
 // Initial Default Menu Data
+// Initial Default Menu Data
 export const defaultMenu = [
   {
     meal: "Grilled Salmon Meal", totalPrice: 36.97,
@@ -47,8 +48,57 @@ export const defaultMenu = [
       { name: "Coleslaw", description: "Crispy coleslaw with a tangy dressing.", price: 6.99, image: "https://www.mylatinatable.com/wp-content/uploads/2019/01/Coleslaw-5.jpg" },
       { name: "Lemonade", description: "Freshly squeezed lemonade.", price: 9.99, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZQ6Ysgv4yKj-iIVI7MbMuycHlU56sElHFQA&s" }
     ]
-  }
+  },
+{
+  meal: "Sirloin Steak Meal", totalPrice: 39.99,
+  items: [
+    { name: "Sirloin Steak", description: "Juicy, grilled sirloin steak seasoned to perfection.", price: 19.99, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZylWs1XFcZLO95oPZpoQIdg2MexF8f0VVjg&s" },
+    { name: "Baked Potato", description: "Fluffy baked potato with butter, sour cream, and chives.", price: 7.99, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYfRX7FkPZBZiWJ3bSY1uVor-D6TbgW-j3og&s" },
+    { name: "House Red Wine", description: "A robust red wine to complement your steak.", price: 11.99, image: "https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/1-red-wine-being-poured-in-a-glass-juanmonino.jpg" }
+  ]
+},
+{
+  meal: "Texas Brisket Meal", totalPrice: 37.99,
+  items: [
+    { name: "Smoked Brisket", description: "Slow-smoked brisket with a rich, smoky flavor.", price: 18.99, image: "https://sundaysuppermovement.com/wp-content/uploads/2023/10/smoked-beef-brisket-featured.jpg" },
+    { name: "Cornbread", description: "Sweet and buttery cornbread with a golden crust.", price: 6.99, image: "https://www.lanascooking.com/wp-content/uploads/2022/03/old-fashioned-cornbread-feature.jpg" },
+    { name: "Sweet Tea", description: "Classic Southern-style sweet tea.", price: 11.99, image: "https://www.allrecipes.com/thmb/REETjYFdVRmMtwVHPT66VmQVmmI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/109190-smooth-sweet-tea-DDMFS-4x3-9e849a386d414cb2b852099f02b6782d.jpg" }
+  ]
+},
+{
+  meal: "Filet Mignon Meal", totalPrice: 49.99,
+  items: [
+    { name: "Filet Mignon", description: "Tender, perfectly cooked filet mignon.", price: 25.99, image: "https://themom100.com/wp-content/uploads/2023/08/grilled-filet-mignon-31345-500x500.jpg" },
+    { name: "Asparagus Spears", description: "Lightly seasoned and grilled asparagus.", price: 8.99, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoAHao-LV6Bis548GBifI9xRjtbCoGPVPzIQ&s" },
+    { name: "Cabernet Sauvignon", description: "A premium cabernet sauvignon to pair with the steak.", price: 14.99, image: "https://beveragedynamics.com/wp-content/uploads/2018/08/pour.jpg" }
+  ]
+},
+{
+  meal: "Chicken Caesar Salad Meal", totalPrice: 22.99,
+  items: [
+    { name: "Chicken Caesar Salad", description: "Crisp romaine lettuce, grilled chicken, parmesan, and Caesar dressing.", price: 14.99, image: "https://britneybreaksbread.com/wp-content/uploads/2021/01/5G1A6645.jpg" },
+    { name: "Garlic Breadsticks", description: "Soft breadsticks brushed with garlic butter.", price: 5.99, image: "https://sallysbakingaddiction.com/wp-content/uploads/2023/01/breadsticks-like-olive-garden.jpg" },
+    { name: "Sparkling Water", description: "Refreshing sparkling water with a hint of lime.", price: 2.99, image: "https://www.shutterstock.com/image-photo/pouring-sparkling-water-glass-green-260nw-2302991515.jpg" }
+  ]
+},
+{
+  meal: "Mediterranean Falafel Bowl", totalPrice: 26.99,
+  items: [
+    { name: "Falafel", description: "Crispy, golden falafel made with chickpeas and fresh herbs.", price: 12.99, image: "https://www.themediterraneandish.com/wp-content/uploads/2020/02/falafel-recipe-1.jpg" },
+    { name: "Tabbouleh Salad", description: "Fresh parsley, bulgur, and tomato salad with a lemon vinaigrette.", price: 8.99, image: "https://www.straightupfood.com/blog/wp-content/uploads/2021/06/Tabouli_FI_6897.jpg" },
+    { name: "Mint Lemonade", description: "Refreshing lemonade infused with fresh mint.", price: 4.99, image: "https://thegourmetgourmand.com/wp-content/uploads/2020/07/limonana1-683x1024.jpg" }
+  ]
+},
+{
+  meal: "Grilled Portobello Mushroom Meal", totalPrice: 29.99,
+  items: [
+    { name: "Grilled Portobello Mushroom", description: "Juicy, marinated portobello mushroom caps grilled to perfection.", price: 14.99, image: "https://healthyrecipesblogs.com/wp-content/uploads/2012/08/grilled-portobello-featured-2021.jpg" },
+    { name: "Roasted Sweet Potatoes", description: "Tender sweet potatoes roasted with a hint of cinnamon.", price: 8.99, image: "https://www.foodnetwork.com/content/dam/images/food/fullset/2011/8/30/0/cc-armendariz_roasted-sweet-potatoes-with-honey-cinnamon-recipe-02_s4x3.jpg" },
+    { name: "Herbal Tea", description: "A soothing blend of caffeine-free herbal tea.", price: 5.99, image: "https://images.stockcake.com/public/1/2/7/127662f8-e5d3-45db-bc62-dacd3f7ff4fd_large/steaming-herbal-tea-stockcake.jpg" }
+  ]
+}
 ];
+
 
 
 // Global Menu Variable
