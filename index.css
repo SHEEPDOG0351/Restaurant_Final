@@ -554,9 +554,9 @@ nav.scrolled a:hover {
 }
 
 .review-input-body button:hover {
-    background-color: white;
+    background-color: #4CAF50;
     transition: 0.3s;
-    border: 1px white solid;
+    border: 1px #4CAF50 solid;
 }
 
 .review-entry {
@@ -727,6 +727,11 @@ nav.scrolled a:hover {
     display: block;
     margin: 40px auto 80px auto;
     font-size: 1.75em;
+}
+
+.btn-purchase:hover {
+    background-color: #4CAF50;
+    transition: 0.3s;
 }
 
 /* Primary button styling (for the purchase button) */

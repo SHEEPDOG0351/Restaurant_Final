@@ -154,23 +154,20 @@ function loadReviews() {
   return savedReviews ? JSON.parse(savedReviews) : [];
 }
 
+
 function saveReview(name, rating, description) {
-  // Load existing reviews from localStorage
-  const existingReviews = JSON.parse(localStorage.getItem('reviews')) || [];
-  
-  // Create a new review object
-  const newReview = { 
-    name, 
-    rating, 
-    description, 
-    date: new Date().toLocaleString() 
-  };
-
-  // Append the new review to the existing array
+  const existingReviews = safeParse(localStorage.getItem('reviews'));
+  const newReview = { name, rating, description, date: new Date().toLocaleString() };
   existingReviews.push(newReview);
-
-  // Save updated array back to localStorage
   localStorage.setItem('reviews', JSON.stringify(existingReviews));
+}
+
+function safeParse(jsonString) {
+  try {
+    return JSON.parse(jsonString);
+  } catch (e) {
+    return []; // Default to an empty array on parse failure
+  }
 }
 
 
@@ -250,6 +247,9 @@ window.setRating = setRating
 
 // Initialize the page with the menu and reviews
 window.onload = () => {
+  if (!localStorage.getItem('reviews')) {
+    localStorage.setItem('reviews', JSON.stringify([]));
+  }
   renderMenu();
   renderReviews();
 };
